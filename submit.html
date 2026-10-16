@@ -158,7 +158,7 @@
 </div>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;deadline&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Submission deadline to be announced&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Submission&quot;},&quot;maxWords&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:250,&quot;min&quot;:100,&quot;max&quot;:600,&quot;step&quot;:50,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Submission&quot;},&quot;primaryEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;loftelie@planckian.co&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Submission&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;deadline&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Submission deadline: 11 December 2026&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Submission&quot;},&quot;maxWords&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:250,&quot;min&quot;:100,&quot;max&quot;:600,&quot;step&quot;:50,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Submission&quot;},&quot;primaryEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;loftelie@planckian.co&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Submission&quot;}}">
 class Component extends DCLogic {
   state = {
     submitted: false,
@@ -217,7 +217,7 @@ class Component extends DCLogic {
       submitted: this.state.submitted,
       editing: !this.state.submitted,
       copyLabel: this.state.copyLabel,
-      deadline: this.props.deadline ?? 'Submission deadline to be announced',
+      deadline: this.props.deadline ?? 'Submission deadline: 11 December 2026',
       primaryEmail,
       primaryMailto: 'mailto:' + primaryEmail,
       wordCount: w + ' / ' + this.maxWords + ' words',
