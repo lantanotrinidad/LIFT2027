@@ -19,6 +19,7 @@
     body { background: #181830; color: #e9e9ed; margin: 0; }
     a { color: var(--color-accent); }
     a:hover { color: var(--color-accent-300); }
+    .logo-placeholder { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border: 1px dashed var(--color-divider); border-radius: var(--radius-md); color: var(--color-neutral-500); font-size: 14px; letter-spacing: 0.02em; }
   </style>
 </helmet>
 
@@ -103,9 +104,13 @@
   <section id="sponsor" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:56px 24px 8px">
     <h6 style="color:var(--color-neutral-500);margin:0 0 26px">Sponsored by</h6>
     <div style="display:flex;flex-wrap:wrap;gap:24px 48px;align-items:center">
+      <img class="lighten" src="assets/logo-planckian.png" alt="Planckian" style="height:20px;width:auto">
       <img class="lighten" src="assets/logo-quantum-machines.png" alt="Quantum Machines" style="height:30px;width:auto">
       <img class="lighten" src="assets/logo-quantinuum.png" alt="Quantinuum" style="height:44px;width:auto">
-      <img class="lighten" src="assets/logo-planckian.png" alt="Planckian" style="height:20px;width:auto">
+      <!-- Placeholders until logos arrive: swap each span for an <img class="lighten"> -->
+      <span class="logo-placeholder">Google</span>
+      <span class="logo-placeholder">Oratomic</span>
+      <span class="logo-placeholder">Quantum Elements</span>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;margin-top:30px;font-size:14px">
       <span class="text-muted" style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase">Interested in sponsoring</span>
