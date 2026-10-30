@@ -26,16 +26,44 @@
     .lattice { position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(circle, rgba(233,233,237,0.16) 1.1px, transparent 1.7px); background-size: 30px 30px; background-position: 15px 15px; -webkit-mask-image: radial-gradient(58% 80% at 84% 34%, #000, transparent 76%); mask-image: radial-gradient(58% 80% at 84% 34%, #000, transparent 76%); }
     /* lift-logo.png carries faint alpha noise across its whole box; feathering the edges hides the rectangle */
     .emblem { -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(transparent, #000 4%, #000 96%, transparent); -webkit-mask-composite: source-in; mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(transparent, #000 4%, #000 96%, transparent); mask-composite: intersect; }
+    .section-title { display: flex; align-items: center; gap: 14px; margin: 0 0 30px; font-size: clamp(26px, 3vw, 34px); font-weight: 700; letter-spacing: -0.025em; line-height: 1.1; color: var(--color-neutral-100); }
+    .section-title::before { content: ""; flex: 0 0 auto; width: 28px; height: 3px; border-radius: 3px; background: linear-gradient(90deg, var(--color-accent), var(--color-accent-2)); }
+    .lift-word { background: linear-gradient(180deg, var(--color-neutral-100) 40%, var(--color-accent-2-300)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .meta { display: inline-flex; flex-wrap: wrap; gap: 14px 0; margin-top: 36px; padding: 16px 0; border-radius: var(--radius-lg); background: rgba(255,255,255,0.035); box-shadow: inset 0 0 0 1px var(--color-divider); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+    .meta > div { padding: 0 24px; }
+    .meta > div + div { border-left: 1px solid var(--color-divider); }
+    .meta-val { margin-top: 4px; font-size: 17px; font-weight: 600; }
+    .pill { display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px; border-radius: 999px; background: rgba(7,9,62,0.55); box-shadow: inset 0 0 0 1px var(--color-divider); font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-neutral-200); }
+    .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--color-accent); animation: pulse 2s ease-out infinite; }
     .speakers { grid-template-columns: repeat(5, 1fr); }
-    .speaker { padding-top: 14px; border-top: 1px solid var(--color-divider); }
-    .topic { border: 1px solid var(--color-divider); border-radius: 999px; padding: 8px 15px; font-size: 14px; color: var(--color-neutral-200); }
+    .speaker { display: flex; flex-direction: column; gap: 14px; padding: 18px; border-radius: var(--radius-lg); background: linear-gradient(160deg, rgba(255,255,255,0.05), rgba(255,255,255,0.012)); box-shadow: var(--shadow-sm); transition: transform .25s ease, box-shadow .25s ease; }
+    .speaker:hover { transform: translateY(-3px); box-shadow: 0 0 0 1px rgba(234,85,75,0.5), 0 14px 30px rgba(0,0,0,0.35); }
+    .avatar { flex: 0 0 auto; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; font-size: 15px; font-weight: 700; letter-spacing: 0.02em; color: #fff; background: linear-gradient(135deg, var(--color-accent), var(--color-accent-2)); }
+    .speaker:nth-child(3n+2) .avatar { background: linear-gradient(135deg, var(--color-accent-2), var(--color-indigo)); }
+    .speaker:nth-child(3n) .avatar { background: linear-gradient(135deg, var(--color-accent-500), var(--color-accent-2-700)); }
+    .speaker-name { font-size: 16px; font-weight: 600; line-height: 1.3; }
+    .speaker-aff { margin-top: 2px; font-size: 13.5px; }
+    .about-body { flex: 1 1 520px; min-width: 0; max-width: 68ch; }
+    .chip { display: inline-flex; align-items: center; gap: 9px; padding: 7px 14px; border-radius: 999px; background: rgba(234,85,75,0.08); box-shadow: inset 0 0 0 1px rgba(234,85,75,0.32); font-size: 13.5px; font-weight: 500; color: var(--color-accent-200); }
+    .chip::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--color-accent); }
+    .topic { border: 1px solid var(--color-divider); border-radius: 999px; padding: 9px 16px; font-size: 14px; color: var(--color-neutral-200); background: rgba(255,255,255,0.03); transition: border-color .2s ease, color .2s ease, background-color .2s ease; }
+    .topic:hover { border-color: rgba(234,85,75,0.6); background: rgba(234,85,75,0.08); color: var(--color-neutral-100); }
     .ext { font-family: var(--font-mono); font-size: 13px; text-decoration: none; }
-    .logo-placeholder { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border: 1px dashed var(--color-divider); border-radius: var(--radius-md); color: var(--color-neutral-500); font-size: 14px; letter-spacing: 0.02em; }
+    .logo-placeholder { font-size: 19px; font-weight: 700; letter-spacing: -0.02em; color: var(--color-neutral-300); white-space: nowrap; }
+    @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(234,85,75,0.6); } 100% { box-shadow: 0 0 0 9px rgba(234,85,75,0); } }
+    .rise { animation: rise .9s cubic-bezier(.2,.7,.2,1) both; }
+    .d1 { animation-delay: .08s; } .d2 { animation-delay: .16s; } .d3 { animation-delay: .24s; } .d4 { animation-delay: .32s; }
+    .float { animation: float 7s ease-in-out infinite; }
+    @supports (animation-timeline: view()) { .reveal { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 30%; } }
+    @media (prefers-reduced-motion: reduce) { .rise, .float, .reveal, .pulse { animation: none !important; } }
+    @media (min-width: 900px) { .about-body { padding-left: 56px; border-left: 1px solid var(--color-divider); } }
     .only-narrow { display: none; }
     @media (max-width: 760px) { .nav-links { display: none !important; } }
     @media (max-width: 480px) { .only-wide { display: none; } .only-narrow { display: inline; } }
     @media (max-width: 900px) { .speakers { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 560px) { .speakers { grid-template-columns: 1fr; } }
+    @media (max-width: 560px) { .speakers { grid-template-columns: 1fr; } .speaker { flex-direction: row; align-items: center; } .meta > div + div { border-left: 0; } }
   </style>
 </helmet>
 
@@ -64,69 +92,82 @@
     <div style="position:relative;max-width:1120px;margin:0 auto;padding:72px 24px 84px;display:flex;flex-wrap:wrap;gap:48px;align-items:center;justify-content:space-between">
       <!-- container units size the hero lettering to this column; the vw values are the fallback -->
       <div style="flex:1 1 540px;min-width:0;container-type:inline-size">
-        <div style="display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center">
+        <div class="rise" style="display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center">
           <img src="assets/logo-planckian-coral.png" alt="Planckian" style="height:clamp(26px,3.6vw,44px);height:clamp(26px,8.5cqi,44px);width:auto">
           <span style="font-size:clamp(20px,2.8vw,34px);font-size:clamp(20px,6.5cqi,34px);font-weight:500;letter-spacing:-0.01em;color:var(--color-neutral-300)">presents</span>
         </div>
-        <h1 style="margin:30px 0 0;font-weight:700;color:var(--color-neutral-100)">
-          <span style="display:block;font-size:clamp(56px,12vw,132px);font-size:clamp(56px,21cqi,132px);line-height:0.88;letter-spacing:-0.045em">LIFT 2027</span>
+        <h1 class="rise d1" style="margin:30px 0 0;font-weight:700;color:var(--color-neutral-100)">
+          <span class="lift-word" style="display:block;font-size:clamp(56px,12vw,132px);font-size:clamp(56px,21cqi,132px);line-height:0.88;letter-spacing:-0.045em">LIFT 2027</span>
           <span style="display:block;margin-top:18px;font-size:clamp(30px,4.2vw,48px);line-height:1.05;letter-spacing:-0.03em;text-wrap:balance">Leaning Into <span style="color:var(--color-accent)">Fault Tolerance</span></span>
         </h1>
-        <div style="display:flex;flex-wrap:wrap;gap:14px 40px;margin-top:38px">
+        <div class="meta rise d2">
           <div>
             <div class="label">Dates</div>
-            <div style="margin-top:4px;font-size:18px;font-weight:600">22–26 March 2027</div>
+            <div class="meta-val">22–26 March 2027</div>
           </div>
           <div>
             <div class="label">Venue</div>
-            <div style="margin-top:4px;font-size:18px;font-weight:600">Aula Dini, Palazzo del Castelletto, Pisa</div>
+            <div class="meta-val">Aula Dini, Palazzo del Castelletto, Pisa</div>
           </div>
         </div>
-        <p style="margin:30px 0 0;max-width:62ch;font-size:17px;line-height:1.6;color:var(--color-neutral-300);text-wrap:pretty">Quantum computing has reached an inflection point. At LIFT 2027, Planckian brings together an international group of scientists, spanning academia and industry, to discuss the most pressing challenges and recent advances on the road to fault-tolerant quantum computing.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:30px">
+        <p class="rise d3" style="margin:30px 0 0;max-width:62ch;font-size:17px;line-height:1.6;color:var(--color-neutral-300);text-wrap:pretty">Quantum computing has reached an inflection point. At LIFT 2027, Planckian brings together an international group of scientists, spanning academia and industry, to discuss the most pressing challenges and recent advances on the road to fault-tolerant quantum computing.</p>
+        <div class="rise d4" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:30px">
           <a class="btn btn-primary" href="{{ submitUrl }}" target="_blank" rel="noopener" style="padding:11px 18px">Submit a talk or poster</a>
           <button class="btn btn-secondary" onClick="{{ addToCalendar }}" style="padding:11px 18px">Add to calendar</button>
         </div>
       </div>
-      <div style="flex:0 0 auto;position:relative;width:min(330px,70vw);margin:0 auto">
-        <div aria-hidden="true" style="position:absolute;inset:-16%;border-radius:50%;background:radial-gradient(closest-side,rgba(146,101,230,0.32),rgba(146,101,230,0) 72%)"></div>
-        <img class="lighten emblem" src="assets/lift-logo.png" alt="LIFT 2027 — Leaning Into Fault Tolerance, Pisa, Italy" style="position:relative;width:100%;height:auto">
+      <div class="rise d2" style="flex:0 0 auto;position:relative;width:min(330px,70vw);margin:0 auto">
+        <div aria-hidden="true" style="position:absolute;inset:-16%;border-radius:50%;background:radial-gradient(closest-side,rgba(146,101,230,0.36),rgba(146,101,230,0) 72%)"></div>
+        <img class="lighten emblem float" src="assets/lift-logo.png" alt="LIFT 2027 — Leaning Into Fault Tolerance, Pisa, Italy" style="position:relative;width:100%;height:auto">
+        <sc-if value="{{ showCountdown }}" hint-placeholder-val="{{ true }}">
+          <div style="position:relative;display:flex;justify-content:center;margin-top:22px"><span class="pill"><span class="pulse" aria-hidden="true"></span>{{ countdown }}</span></div>
+        </sc-if>
       </div>
     </div>
   </section>
 
-  <section id="speakers" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:8px 24px 8px">
-    <h6 class="kicker">Invited speakers</h6>
-    <div class="speakers" style="display:grid;gap:26px 24px">
-      <div class="speaker"><div style="font-weight:600;font-size:17px">Seth Lloyd</div><div class="text-muted" style="font-size:14px">MIT</div></div>
-      <div class="speaker"><div style="font-weight:600;font-size:17px">Barbara Terhal</div><div class="text-muted" style="font-size:14px">TU Delft</div></div>
-      <div class="speaker"><div style="font-weight:600;font-size:17px">Earl Campbell</div><div class="text-muted" style="font-size:14px">Google Quantum AI</div></div>
-      <div class="speaker"><div style="font-weight:600;font-size:17px">Jens Eisert</div><div class="text-muted" style="font-size:14px">Freie U. Berlin</div></div>
-      <div class="speaker"><div style="font-weight:600;font-size:17px">Martin Plenio</div><div class="text-muted" style="font-size:14px">University of Ulm</div></div>
-      <div class="speaker"><div style="font-weight:600;font-size:17px">Hsin-Yuan Huang</div><div class="text-muted" style="font-size:14px">Oratomic</div></div>
-      <div class="speaker"><div style="font-weight:600;font-size:17px">Joschka Roffe</div><div class="text-muted" style="font-size:14px">University of Edinburgh</div></div>
-      <div class="speaker"><div style="font-weight:600;font-size:17px">David Amaro</div><div class="text-muted" style="font-size:14px">Quantinuum</div></div>
-      <div class="speaker"><div style="font-weight:600;font-size:17px">Élie Gouzien</div><div class="text-muted" style="font-size:14px">Alice &amp; Bob</div></div>
-      <div class="speaker"><div style="font-weight:600;font-size:17px">Giorgia Nixon</div><div class="text-muted" style="font-size:14px">University of Sydney</div></div>
+  <section id="speakers" class="reveal" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:8px 24px 8px">
+    <h2 class="section-title">Invited speakers</h2>
+    <div class="speakers" style="display:grid;gap:16px">
+      <div class="speaker"><span class="avatar" aria-hidden="true">SL</span><div><div class="speaker-name">Seth Lloyd</div><div class="text-muted speaker-aff">MIT</div></div></div>
+      <div class="speaker"><span class="avatar" aria-hidden="true">BT</span><div><div class="speaker-name">Barbara Terhal</div><div class="text-muted speaker-aff">TU Delft</div></div></div>
+      <div class="speaker"><span class="avatar" aria-hidden="true">EC</span><div><div class="speaker-name">Earl Campbell</div><div class="text-muted speaker-aff">Google Quantum AI</div></div></div>
+      <div class="speaker"><span class="avatar" aria-hidden="true">JE</span><div><div class="speaker-name">Jens Eisert</div><div class="text-muted speaker-aff">Freie U. Berlin</div></div></div>
+      <div class="speaker"><span class="avatar" aria-hidden="true">MP</span><div><div class="speaker-name">Martin Plenio</div><div class="text-muted speaker-aff">University of Ulm</div></div></div>
+      <div class="speaker"><span class="avatar" aria-hidden="true">HH</span><div><div class="speaker-name">Hsin-Yuan Huang</div><div class="text-muted speaker-aff">Oratomic</div></div></div>
+      <div class="speaker"><span class="avatar" aria-hidden="true">JR</span><div><div class="speaker-name">Joschka Roffe</div><div class="text-muted speaker-aff">University of Edinburgh</div></div></div>
+      <div class="speaker"><span class="avatar" aria-hidden="true">DA</span><div><div class="speaker-name">David Amaro</div><div class="text-muted speaker-aff">Quantinuum</div></div></div>
+      <div class="speaker"><span class="avatar" aria-hidden="true">ÉG</span><div><div class="speaker-name">Élie Gouzien</div><div class="text-muted speaker-aff">Alice &amp; Bob</div></div></div>
+      <div class="speaker"><span class="avatar" aria-hidden="true">GN</span><div><div class="speaker-name">Georgia Nixon</div><div class="text-muted speaker-aff">University of Sydney</div></div></div>
     </div>
-    <p class="text-muted" style="margin:26px 0 0;font-size:14px">More speakers to be announced.</p>
+    <p class="text-muted" style="margin:22px 0 0;font-size:14px">More speakers to be announced.</p>
   </section>
 
-  <section id="about" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:72px 24px 8px">
-    <h6 class="kicker">About Planckian</h6>
-    <div style="display:flex;flex-wrap:wrap;gap:24px 72px;align-items:flex-start">
-      <img src="assets/logo-planckian-coral.png" alt="Planckian" style="flex:0 0 auto;height:46px;width:auto;margin-top:4px">
-      <div style="flex:1 1 520px;min-width:0;max-width:66ch">
-        <p style="margin:0;font-size:18px;line-height:1.6;color:var(--color-neutral-100);text-wrap:pretty">LIFT 2027 is a Planckian conference. Planckian is building the foundational technology for large-scale quantum computers: a quantum processor that combines the established reliability of superconducting circuits with a new approach to qubit control.</p>
-        <p style="margin:18px 0 0;font-size:16px;line-height:1.65;color:var(--color-neutral-300);text-wrap:pretty">Scaling superconducting qubits while preserving performance is one of the hardest problems in quantum computing. Instead of brute-force scaling, with control hardware growing alongside every added qubit, Planckian decouples control from qubit count. Its chip architecture uses shared control lines, which drastically reduces wiring complexity. All qubits are addressed simultaneously by globally broadcast signals, and engineered qubit couplings turn those signals into selective gate operations and move quantum information within the chip.</p>
-        <p style="margin:18px 0 0;font-size:16px;line-height:1.65;color:var(--color-neutral-300);text-wrap:pretty">The technology is developed by a team that has spent decades at the forefront of quantum research.</p>
-        <a class="ext" href="https://www.planckian.co" target="_blank" rel="noopener" style="display:inline-block;margin-top:18px">planckian.co ↗</a>
+  <section id="about" class="reveal" style="scroll-margin-top:72px;margin-top:40px;padding:56px 0 24px;overflow:hidden;background-image:radial-gradient(520px 340px at 14% 46%, rgba(234,85,75,0.14), rgba(234,85,75,0) 70%)">
+    <div style="max-width:1120px;margin:0 auto;padding:0 24px">
+      <h6 class="kicker">About</h6>
+      <div style="display:flex;flex-wrap:wrap;gap:28px 56px;align-items:flex-start">
+        <div style="flex:0 0 auto;max-width:100%">
+          <img src="assets/logo-planckian-coral.png" alt="Planckian" style="width:384px;max-width:100%;height:auto;margin-top:2px">
+          <div style="margin-top:20px;font-size:20px;font-weight:600;line-height:1.3;letter-spacing:-0.015em;color:var(--color-neutral-200)">Quantum computers,<br>reimagined at scale.</div>
+          <div style="display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin-top:24px">
+            <span class="chip">Superconducting qubits</span>
+            <span class="chip">Shared control lines</span>
+            <span class="chip">Globally broadcast control</span>
+          </div>
+        </div>
+        <div class="about-body">
+          <p style="margin:0;font-size:19px;line-height:1.55;color:var(--color-neutral-100);text-wrap:pretty">LIFT 2027 is a Planckian conference. Planckian is building the foundational technology for large-scale quantum computers: a quantum processor that combines the established reliability of superconducting circuits with a new approach to qubit control.</p>
+          <p style="margin:18px 0 0;font-size:16px;line-height:1.65;color:var(--color-neutral-300);text-wrap:pretty">Scaling superconducting qubits while preserving performance is one of the hardest problems in quantum computing. Instead of brute-force scaling, with control hardware growing alongside every added qubit, Planckian decouples control from qubit count. Its chip architecture uses shared control lines, which drastically reduces wiring complexity. All qubits are addressed simultaneously by globally broadcast signals, and engineered qubit couplings turn those signals into selective gate operations and move quantum information within the chip.</p>
+          <p style="margin:18px 0 0;font-size:16px;line-height:1.65;color:var(--color-neutral-300);text-wrap:pretty">The technology is developed by a team that has spent decades at the forefront of quantum research.</p>
+          <a class="ext" href="https://www.planckian.co" target="_blank" rel="noopener" style="display:inline-block;margin-top:22px">planckian.co ↗</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="programme" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:64px 24px 8px">
-    <h6 class="kicker">On the programme</h6>
+  <section id="programme" class="reveal" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:56px 24px 8px">
+    <h2 class="section-title">On the programme</h2>
     <div style="display:flex;flex-wrap:wrap;gap:10px">
       <span class="topic">QEC codes and decoders</span>
       <span class="topic">Magic state distillation</span>
@@ -140,24 +181,28 @@
     </div>
   </section>
 
-  <section id="contribute" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:64px 24px 8px">
-    <div style="display:flex;flex-wrap:wrap;gap:32px;align-items:center;justify-content:space-between;padding:30px;border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);background-image:linear-gradient(120deg,rgba(73,54,158,0.6),rgba(73,54,158,0.18) 55%,rgba(234,85,75,0.16))">
-      <div style="flex:1 1 380px;min-width:0">
-        <div class="label" style="color:var(--color-accent-400)">Call for contributions</div>
-        <h3 style="margin:10px 0 0;font-size:26px;font-weight:700;letter-spacing:-0.02em">Contributed talks and poster session</h3>
+  <section id="contribute" class="reveal" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:72px 24px 8px">
+    <div style="position:relative;overflow:hidden;display:flex;flex-wrap:wrap;gap:32px;align-items:center;justify-content:space-between;padding:36px;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);background-image:radial-gradient(420px 260px at 100% 0%, rgba(234,85,75,0.28), rgba(234,85,75,0) 70%),linear-gradient(120deg,rgba(73,54,158,0.7),rgba(73,54,158,0.22) 55%,rgba(234,85,75,0.16))">
+      <div class="lattice" aria-hidden="true" style="-webkit-mask-image:radial-gradient(60% 120% at 100% 50%, #000, transparent 70%);mask-image:radial-gradient(60% 120% at 100% 50%, #000, transparent 70%)"></div>
+      <div style="position:relative;flex:1 1 380px;min-width:0">
+        <div style="display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center">
+          <div class="label" style="color:var(--color-accent-400)">Call for contributions</div>
+          <span class="pill" style="padding:4px 11px;font-size:11px"><span class="pulse" aria-hidden="true"></span>Deadline 11 December 2026</span>
+        </div>
+        <h3 style="margin:12px 0 0;font-size:clamp(24px,2.6vw,30px);font-weight:700;letter-spacing:-0.02em">Contributed talks and poster session</h3>
         <p style="margin:12px 0 0;max-width:58ch;color:var(--color-neutral-300);text-wrap:pretty">Applications for contributed talks and the poster session are submitted through the abstract form. Abstracts can be marked for a talk, a poster, or either.</p>
       </div>
-      <a class="btn btn-primary" href="{{ submitUrl }}" target="_blank" rel="noopener" style="flex:0 0 auto;padding:12px 20px">Open the submission form →</a>
+      <a class="btn btn-primary" href="{{ submitUrl }}" target="_blank" rel="noopener" style="position:relative;flex:0 0 auto;padding:13px 22px">Open the submission form →</a>
     </div>
   </section>
 
   <sc-if value="{{ showSponsorship }}" hint-placeholder-val="{{ true }}">
-  <section id="sponsor" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:64px 24px 8px">
-    <h6 class="kicker">Sponsored by</h6>
-    <div style="display:flex;flex-wrap:wrap;gap:24px 48px;align-items:center">
+  <section id="sponsor" class="reveal" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:72px 24px 8px">
+    <h2 class="section-title">Sponsors</h2>
+    <div style="display:flex;flex-wrap:wrap;gap:28px 52px;align-items:center">
       <img class="lighten" src="assets/logo-quantum-machines.png" alt="Quantum Machines" style="height:30px;width:auto">
       <img class="lighten" src="assets/logo-quantinuum.png" alt="Quantinuum" style="height:44px;width:auto">
-      <!-- Placeholders until logos arrive: swap each span for an <img class="lighten"> -->
+      <!-- Name wordmarks until logos arrive: swap each span for an <img class="lighten"> -->
       <span class="logo-placeholder">Google</span>
       <span class="logo-placeholder">Oratomic</span>
       <span class="logo-placeholder">Quantum Elements</span>
@@ -169,7 +214,7 @@
   </section>
   </sc-if>
 
-  <section id="venue" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:64px 24px 8px">
+  <section id="venue" class="reveal" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:64px 24px 8px">
     <h6 class="kicker">Venue</h6>
     <div style="display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;font-size:14px">
       <img class="lighten" src="assets/logo-sns.png" alt="Scuola Normale Superiore" style="height:40px;width:auto">
