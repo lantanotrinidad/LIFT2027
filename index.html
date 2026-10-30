@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>LIFT 2027 — Leaning Into Fault Tolerance · A Planckian conference · Pisa, 22–26 March 2027</title>
+<title>Planckian presents LIFT 2027 — Leaning Into Fault Tolerance · Pisa, 22–26 March 2027</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="LIFT 2027 — Leaning Into Fault Tolerance. A Planckian conference hosted by the Scuola Normale Superiore, Pisa, 22–26 March 2027.">
+<meta name="description" content="Planckian presents LIFT 2027 — Leaning Into Fault Tolerance. Pisa, 22–26 March 2027.">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -32,7 +32,8 @@
     .ext { font-family: var(--font-mono); font-size: 13px; text-decoration: none; }
     .logo-placeholder { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border: 1px dashed var(--color-divider); border-radius: var(--radius-md); color: var(--color-neutral-500); font-size: 14px; letter-spacing: 0.02em; }
     .only-narrow { display: none; }
-    @media (max-width: 760px) { .nav-links { display: none !important; } }
+    .hosts { grid-template-columns: 2fr 1fr; }
+    @media (max-width: 760px) { .nav-links { display: none !important; } .hosts { grid-template-columns: 1fr; } }
     @media (max-width: 480px) { .only-wide { display: none; } .only-narrow { display: inline; } }
     @media (max-width: 560px) { .speakers { grid-template-columns: 1fr; } }
   </style>
@@ -43,7 +44,7 @@
   <header style="position:sticky;top:0;z-index:20;background-color:rgba(7,9,62,0.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background-image:linear-gradient(to right,transparent,var(--color-divider) 48px,var(--color-divider) calc(100% - 48px),transparent);background-repeat:no-repeat;background-position:bottom;background-size:100% 1px">
     <div class="nav" style="max-width:1120px;margin:0 auto;padding:14px 24px;gap:22px">
       <a href="#top" class="nav-brand" style="display:inline-flex;align-items:center;gap:14px;text-decoration:none;margin-right:auto">
-        <img src="assets/logo-planckian-coral.png" alt="Planckian" style="height:16px;width:auto">
+        <img src="assets/logo-planckian-coral.png" alt="Planckian" style="height:19px;width:auto">
         <span aria-hidden="true" style="width:1px;height:18px;background:var(--color-divider)"></span>
         <span style="font-size:15px;font-weight:600;letter-spacing:0.06em">LIFT 2027</span>
       </a>
@@ -61,12 +62,16 @@
   <section id="top" style="position:relative;overflow:hidden;background-image:radial-gradient(760px 540px at 88% -12%, rgba(73,54,158,0.6) 0%, rgba(73,54,158,0) 70%),radial-gradient(560px 380px at -6% 62%, rgba(234,85,75,0.15) 0%, rgba(234,85,75,0) 70%)">
     <div class="lattice" aria-hidden="true"></div>
     <div style="position:relative;max-width:1120px;margin:0 auto;padding:72px 24px 84px;display:flex;flex-wrap:wrap;gap:48px;align-items:center;justify-content:space-between">
-      <div style="flex:1 1 540px;min-width:0">
-        <div class="mono" style="display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase">
-          <span style="display:inline-flex;align-items:center;gap:10px;color:var(--color-accent)"><span aria-hidden="true" style="width:7px;height:7px;border-radius:50%;background:var(--color-accent);box-shadow:0 0 0 4px rgba(234,85,75,0.2)"></span>A Planckian conference</span>
-          <span style="color:var(--color-neutral-400)">Hosted by Scuola Normale Superiore, Pisa</span>
+      <!-- container units size the hero lettering to this column; the vw values are the fallback -->
+      <div style="flex:1 1 540px;min-width:0;container-type:inline-size">
+        <div style="display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center">
+          <img src="assets/logo-planckian-coral.png" alt="Planckian" style="height:clamp(26px,3.6vw,44px);height:clamp(26px,8.5cqi,44px);width:auto">
+          <span style="font-size:clamp(20px,2.8vw,34px);font-size:clamp(20px,6.5cqi,34px);font-weight:500;letter-spacing:-0.01em;color:var(--color-neutral-300)">presents</span>
         </div>
-        <h1 style="margin:34px 0 0;font-size:clamp(46px,7.6vw,94px);line-height:0.98;letter-spacing:-0.035em;font-weight:700;color:var(--color-neutral-100);text-wrap:balance">Leaning Into<br><span style="color:var(--color-accent)">Fault Tolerance</span></h1>
+        <h1 style="margin:30px 0 0;font-weight:700;color:var(--color-neutral-100)">
+          <span style="display:block;font-size:clamp(56px,12vw,132px);font-size:clamp(56px,21cqi,132px);line-height:0.88;letter-spacing:-0.045em">LIFT 2027</span>
+          <span style="display:block;margin-top:18px;font-size:clamp(30px,4.2vw,48px);line-height:1.05;letter-spacing:-0.03em;text-wrap:balance">Leaning Into <span style="color:var(--color-accent)">Fault Tolerance</span></span>
+        </h1>
         <div style="display:flex;flex-wrap:wrap;gap:14px 40px;margin-top:38px">
           <div>
             <div class="label">Dates</div>
@@ -74,16 +79,16 @@
           </div>
           <div>
             <div class="label">Venue</div>
-            <div style="margin-top:4px;font-size:18px;font-weight:600">Aula Dini, Palazzo del Castelletto</div>
+            <div style="margin-top:4px;font-size:18px;font-weight:600">Aula Dini, Palazzo del Castelletto, Pisa</div>
           </div>
         </div>
-        <p style="margin:30px 0 0;max-width:62ch;font-size:17px;line-height:1.6;color:var(--color-neutral-300);text-wrap:pretty">Quantum computing has reached an inflection point. LIFT 2027, a Planckian conference hosted by the Scuola Normale Superiore, brings together an international group of scientists, spanning academia and industry, to discuss the most pressing challenges and recent advances on the road to fault-tolerant quantum computing.</p>
+        <p style="margin:30px 0 0;max-width:62ch;font-size:17px;line-height:1.6;color:var(--color-neutral-300);text-wrap:pretty">Quantum computing has reached an inflection point. At LIFT 2027, Planckian brings together an international group of scientists, spanning academia and industry, to discuss the most pressing challenges and recent advances on the road to fault-tolerant quantum computing.</p>
         <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:30px">
           <a class="btn btn-primary" href="{{ submitUrl }}" target="_blank" rel="noopener" style="padding:11px 18px">Submit a talk or poster</a>
           <button class="btn btn-secondary" onClick="{{ addToCalendar }}" style="padding:11px 18px">Add to calendar</button>
         </div>
       </div>
-      <div style="flex:0 0 auto;position:relative;width:min(290px,64vw);margin:0 auto">
+      <div style="flex:0 0 auto;position:relative;width:min(330px,70vw);margin:0 auto">
         <div aria-hidden="true" style="position:absolute;inset:-16%;border-radius:50%;background:radial-gradient(closest-side,rgba(146,101,230,0.32),rgba(146,101,230,0) 72%)"></div>
         <img class="lighten emblem" src="assets/lift-logo.png" alt="LIFT 2027 — Leaning Into Fault Tolerance, Pisa, Italy" style="position:relative;width:100%;height:auto">
       </div>
@@ -91,21 +96,21 @@
   </section>
 
   <section id="about" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:8px 24px 0">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:var(--color-divider);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm)">
-      <div style="padding:28px 30px 30px;background:linear-gradient(140deg,rgba(234,85,75,0.13),rgba(234,85,75,0) 62%),var(--color-bg)">
-        <div class="label">Organised by</div>
+    <div class="hosts" style="display:grid;gap:1px;background:var(--color-divider);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm)">
+      <div style="padding:32px 34px 34px;background:linear-gradient(140deg,rgba(234,85,75,0.18),rgba(234,85,75,0) 62%),var(--color-bg)">
+        <div class="label">Presented by</div>
         <div style="height:60px;display:flex;align-items:center;margin-top:14px">
-          <img src="assets/logo-planckian-coral.png" alt="Planckian" style="height:28px;width:auto">
+          <img src="assets/logo-planckian-coral.png" alt="Planckian" style="height:42px;width:auto">
         </div>
-        <p style="margin:16px 0 0;max-width:46ch;color:var(--color-neutral-300);text-wrap:pretty">LIFT 2027 is a Planckian conference. Planckian is building the foundational technology for large-scale quantum computers.</p>
+        <p style="margin:16px 0 0;max-width:52ch;font-size:16px;color:var(--color-neutral-200);text-wrap:pretty">LIFT 2027 is a Planckian conference. Planckian is building the foundational technology for large-scale quantum computers.</p>
         <a class="ext" href="https://www.planckian.co" target="_blank" rel="noopener" style="display:inline-block;margin-top:14px">planckian.co ↗</a>
       </div>
-      <div style="padding:28px 30px 30px;background:linear-gradient(140deg,rgba(146,101,230,0.13),rgba(146,101,230,0) 62%),var(--color-bg)">
-        <div class="label">Hosted by</div>
+      <div style="padding:32px 30px 34px;background:var(--color-bg)">
+        <div class="label">Venue host</div>
         <div style="height:60px;display:flex;align-items:center;margin-top:14px">
-          <img class="lighten" src="assets/logo-sns.png" alt="Scuola Normale Superiore" style="height:60px;width:auto">
+          <img class="lighten" src="assets/logo-sns.png" alt="Scuola Normale Superiore" style="height:40px;width:auto">
         </div>
-        <p style="margin:16px 0 0;max-width:46ch;color:var(--color-neutral-300);text-wrap:pretty">The Scuola Normale Superiore hosts the conference in the Aula Dini of Palazzo del Castelletto, Pisa.</p>
+        <p class="text-muted" style="margin:16px 0 0;max-width:40ch;font-size:14px;text-wrap:pretty">Aula Dini, Palazzo del Castelletto, Scuola Normale Superiore, Pisa.</p>
         <a class="ext" href="https://www.sns.it" target="_blank" rel="noopener" style="display:inline-block;margin-top:14px">sns.it ↗</a>
       </div>
     </div>
@@ -191,12 +196,12 @@
         </div>
         <div style="display:flex;flex-direction:column;gap:20px">
           <div>
-            <div class="label">Organised by</div>
-            <img src="assets/logo-planckian-coral.png" alt="Planckian" style="height:18px;width:auto;margin-top:12px">
+            <div class="label">Presented by</div>
+            <img src="assets/logo-planckian-coral.png" alt="Planckian" style="height:26px;width:auto;margin-top:12px">
           </div>
           <div>
-            <div class="label">Hosted by</div>
-            <img class="lighten" src="assets/logo-sns.png" alt="Scuola Normale Superiore" style="height:48px;width:auto;margin-top:10px">
+            <div class="label">Venue host</div>
+            <img class="lighten" src="assets/logo-sns.png" alt="Scuola Normale Superiore" style="height:34px;width:auto;margin-top:10px">
           </div>
           <div>
             <div class="label">Supported by</div>
@@ -211,7 +216,7 @@
         </div>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;margin-top:44px;padding-top:20px;border-top:1px solid var(--color-divider);font-size:13px">
-        <span class="text-muted">LIFT 2027 · A Planckian conference hosted by the Scuola Normale Superiore · Pisa, Italy</span>
+        <span class="text-muted">Planckian presents LIFT 2027 · Pisa, Italy</span>
         <span class="text-muted">22–26 March 2027</span>
       </div>
     </div>
@@ -242,7 +247,7 @@ class Component extends DCLogic {
       'DTSTART;VALUE=DATE:20270322', 'DTEND;VALUE=DATE:20270327',
       'SUMMARY:LIFT 2027 — Leaning Into Fault Tolerance',
       'LOCATION:Aula Dini, Palazzo del Castelletto, 56126 Pisa, Italy',
-      'DESCRIPTION:A Planckian conference hosted by the Scuola Normale Superiore, Pisa. ' + eventUrl,
+      'DESCRIPTION:Planckian presents LIFT 2027 — Leaning Into Fault Tolerance. ' + eventUrl,
       'URL:' + eventUrl, 'END:VEVENT', 'END:VCALENDAR',
     ].join('\r\n');
     const a = document.createElement('a');

@@ -1,6 +1,6 @@
 # LIFT 2027
 
-Event site for **LIFT 2027 — Leaning Into Fault Tolerance**, a Planckian conference hosted by the Scuola Normale Superiore. 22–26 March 2027, Aula Dini, Palazzo del Castelletto, Pisa.
+Event site for **LIFT 2027 — Leaning Into Fault Tolerance**, presented by Planckian. 22–26 March 2027, Aula Dini, Palazzo del Castelletto (Scuola Normale Superiore), Pisa.
 
 ## Files
 
