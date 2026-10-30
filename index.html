@@ -26,15 +26,15 @@
     .lattice { position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(circle, rgba(233,233,237,0.16) 1.1px, transparent 1.7px); background-size: 30px 30px; background-position: 15px 15px; -webkit-mask-image: radial-gradient(58% 80% at 84% 34%, #000, transparent 76%); mask-image: radial-gradient(58% 80% at 84% 34%, #000, transparent 76%); }
     /* lift-logo.png carries faint alpha noise across its whole box; feathering the edges hides the rectangle */
     .emblem { -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(transparent, #000 4%, #000 96%, transparent); -webkit-mask-composite: source-in; mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(transparent, #000 4%, #000 96%, transparent); mask-composite: intersect; }
-    .speakers { grid-template-columns: repeat(3, 1fr); }
+    .speakers { grid-template-columns: repeat(5, 1fr); }
     .speaker { padding-top: 14px; border-top: 1px solid var(--color-divider); }
     .topic { border: 1px solid var(--color-divider); border-radius: 999px; padding: 8px 15px; font-size: 14px; color: var(--color-neutral-200); }
     .ext { font-family: var(--font-mono); font-size: 13px; text-decoration: none; }
     .logo-placeholder { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border: 1px dashed var(--color-divider); border-radius: var(--radius-md); color: var(--color-neutral-500); font-size: 14px; letter-spacing: 0.02em; }
     .only-narrow { display: none; }
-    .hosts { grid-template-columns: 2fr 1fr; }
-    @media (max-width: 760px) { .nav-links { display: none !important; } .hosts { grid-template-columns: 1fr; } }
+    @media (max-width: 760px) { .nav-links { display: none !important; } }
     @media (max-width: 480px) { .only-wide { display: none; } .only-narrow { display: inline; } }
+    @media (max-width: 900px) { .speakers { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 560px) { .speakers { grid-template-columns: 1fr; } }
   </style>
 </helmet>
@@ -49,8 +49,8 @@
         <span style="font-size:15px;font-weight:600;letter-spacing:0.06em">LIFT 2027</span>
       </a>
       <nav class="nav-links" style="display:flex;gap:22px;align-items:center">
-        <a href="#about">About</a>
         <a href="#speakers">Speakers</a>
+        <a href="#about">About</a>
         <a href="#programme">Programme</a>
         <a href="#sponsor">Sponsors</a>
         <a href="#contact">Contact</a>
@@ -95,28 +95,7 @@
     </div>
   </section>
 
-  <section id="about" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:8px 24px 0">
-    <div class="hosts" style="display:grid;gap:1px;background:var(--color-divider);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm)">
-      <div style="padding:32px 34px 34px;background:linear-gradient(140deg,rgba(234,85,75,0.18),rgba(234,85,75,0) 62%),var(--color-bg)">
-        <div class="label">Presented by</div>
-        <div style="height:60px;display:flex;align-items:center;margin-top:14px">
-          <img src="assets/logo-planckian-coral.png" alt="Planckian" style="height:42px;width:auto">
-        </div>
-        <p style="margin:16px 0 0;max-width:52ch;font-size:16px;color:var(--color-neutral-200);text-wrap:pretty">LIFT 2027 is a Planckian conference. Planckian is building the foundational technology for large-scale quantum computers.</p>
-        <a class="ext" href="https://www.planckian.co" target="_blank" rel="noopener" style="display:inline-block;margin-top:14px">planckian.co ↗</a>
-      </div>
-      <div style="padding:32px 30px 34px;background:var(--color-bg)">
-        <div class="label">Venue host</div>
-        <div style="height:60px;display:flex;align-items:center;margin-top:14px">
-          <img class="lighten" src="assets/logo-sns.png" alt="Scuola Normale Superiore" style="height:40px;width:auto">
-        </div>
-        <p class="text-muted" style="margin:16px 0 0;max-width:40ch;font-size:14px;text-wrap:pretty">Aula Dini, Palazzo del Castelletto, Scuola Normale Superiore, Pisa.</p>
-        <a class="ext" href="https://www.sns.it" target="_blank" rel="noopener" style="display:inline-block;margin-top:14px">sns.it ↗</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="speakers" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:72px 24px 8px">
+  <section id="speakers" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:8px 24px 8px">
     <h6 class="kicker">Invited speakers</h6>
     <div class="speakers" style="display:grid;gap:26px 24px">
       <div class="speaker"><div style="font-weight:600;font-size:17px">Seth Lloyd</div><div class="text-muted" style="font-size:14px">MIT</div></div>
@@ -128,8 +107,22 @@
       <div class="speaker"><div style="font-weight:600;font-size:17px">Joschka Roffe</div><div class="text-muted" style="font-size:14px">University of Edinburgh</div></div>
       <div class="speaker"><div style="font-weight:600;font-size:17px">David Amaro</div><div class="text-muted" style="font-size:14px">Quantinuum</div></div>
       <div class="speaker"><div style="font-weight:600;font-size:17px">Élie Gouzien</div><div class="text-muted" style="font-size:14px">Alice &amp; Bob</div></div>
+      <div class="speaker"><div style="font-weight:600;font-size:17px">Giorgia Nixon</div><div class="text-muted" style="font-size:14px">University of Sydney</div></div>
     </div>
     <p class="text-muted" style="margin:26px 0 0;font-size:14px">More speakers to be announced.</p>
+  </section>
+
+  <section id="about" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:72px 24px 8px">
+    <h6 class="kicker">About Planckian</h6>
+    <div style="display:flex;flex-wrap:wrap;gap:24px 72px;align-items:flex-start">
+      <img src="assets/logo-planckian-coral.png" alt="Planckian" style="flex:0 0 auto;height:46px;width:auto;margin-top:4px">
+      <div style="flex:1 1 520px;min-width:0;max-width:66ch">
+        <p style="margin:0;font-size:18px;line-height:1.6;color:var(--color-neutral-100);text-wrap:pretty">LIFT 2027 is a Planckian conference. Planckian is building the foundational technology for large-scale quantum computers: a quantum processor that combines the established reliability of superconducting circuits with a new approach to qubit control.</p>
+        <p style="margin:18px 0 0;font-size:16px;line-height:1.65;color:var(--color-neutral-300);text-wrap:pretty">Scaling superconducting qubits while preserving performance is one of the hardest problems in quantum computing. Instead of brute-force scaling, with control hardware growing alongside every added qubit, Planckian decouples control from qubit count. Its chip architecture uses shared control lines, which drastically reduces wiring complexity. All qubits are addressed simultaneously by globally broadcast signals, and engineered qubit couplings turn those signals into selective gate operations and move quantum information within the chip.</p>
+        <p style="margin:18px 0 0;font-size:16px;line-height:1.65;color:var(--color-neutral-300);text-wrap:pretty">The technology is developed by a team that has spent decades at the forefront of quantum research.</p>
+        <a class="ext" href="https://www.planckian.co" target="_blank" rel="noopener" style="display:inline-block;margin-top:18px">planckian.co ↗</a>
+      </div>
+    </div>
   </section>
 
   <section id="programme" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:64px 24px 8px">
@@ -176,6 +169,15 @@
   </section>
   </sc-if>
 
+  <section id="venue" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:64px 24px 8px">
+    <h6 class="kicker">Venue</h6>
+    <div style="display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;font-size:14px">
+      <img class="lighten" src="assets/logo-sns.png" alt="Scuola Normale Superiore" style="height:40px;width:auto">
+      <span class="text-muted">Aula Dini, Palazzo del Castelletto, Scuola Normale Superiore, Pisa</span>
+      <a class="ext" href="https://www.sns.it" target="_blank" rel="noopener">sns.it ↗</a>
+    </div>
+  </section>
+
   <footer id="contact" style="scroll-margin-top:72px;margin-top:88px;background-image:linear-gradient(to bottom,rgba(17,26,74,0),rgba(17,26,74,0.85))">
     <div style="max-width:1120px;margin:0 auto;padding:48px 24px 56px;background-image:linear-gradient(to right,transparent,var(--color-divider) 48px,var(--color-divider) calc(100% - 48px),transparent);background-repeat:no-repeat;background-position:top;background-size:100% 1px">
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:36px 32px">
@@ -198,10 +200,6 @@
           <div>
             <div class="label">Presented by</div>
             <img src="assets/logo-planckian-coral.png" alt="Planckian" style="height:26px;width:auto;margin-top:12px">
-          </div>
-          <div>
-            <div class="label">Venue host</div>
-            <img class="lighten" src="assets/logo-sns.png" alt="Scuola Normale Superiore" style="height:34px;width:auto;margin-top:10px">
           </div>
           <div>
             <div class="label">Supported by</div>
