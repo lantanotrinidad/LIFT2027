@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>LIFT 2027 — Leaning Into Fault Tolerance · 22–26 March 2027, Pisa</title>
+<title>LIFT 2027 — Leaning Into Fault Tolerance · A Planckian conference · Pisa, 22–26 March 2027</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="LIFT 2027 — Leaning Into Fault Tolerance. A Planckian conference hosted by the Scuola Normale Superiore, Pisa, 22–26 March 2027.">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -13,98 +14,149 @@
   <script src="ds/_ds_bundle.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap">
   <style>
     html { scroll-behavior: smooth; }
-    body { background: #181830; color: #e9e9ed; margin: 0; }
+    body { background: var(--color-bg); color: var(--color-text); margin: 0; }
     a { color: var(--color-accent); }
-    a:hover { color: var(--color-accent-300); }
+    a:hover { color: var(--color-accent-400); }
+    .mono { font-family: var(--font-mono); }
+    .label { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-neutral-500); }
+    .kicker { display: flex; align-items: center; gap: 12px; margin: 0 0 28px; font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.14em; color: var(--color-neutral-400); }
+    .kicker::before { content: ""; width: 16px; height: 2px; background: var(--color-accent); }
+    .lattice { position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(circle, rgba(233,233,237,0.16) 1.1px, transparent 1.7px); background-size: 30px 30px; background-position: 15px 15px; -webkit-mask-image: radial-gradient(58% 80% at 84% 34%, #000, transparent 76%); mask-image: radial-gradient(58% 80% at 84% 34%, #000, transparent 76%); }
+    /* lift-logo.png carries faint alpha noise across its whole box; feathering the edges hides the rectangle */
+    .emblem { -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(transparent, #000 4%, #000 96%, transparent); -webkit-mask-composite: source-in; mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(transparent, #000 4%, #000 96%, transparent); mask-composite: intersect; }
+    .speakers { grid-template-columns: repeat(3, 1fr); }
+    .speaker { padding-top: 14px; border-top: 1px solid var(--color-divider); }
+    .topic { border: 1px solid var(--color-divider); border-radius: 999px; padding: 8px 15px; font-size: 14px; color: var(--color-neutral-200); }
+    .ext { font-family: var(--font-mono); font-size: 13px; text-decoration: none; }
     .logo-placeholder { display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border: 1px dashed var(--color-divider); border-radius: var(--radius-md); color: var(--color-neutral-500); font-size: 14px; letter-spacing: 0.02em; }
+    .only-narrow { display: none; }
+    @media (max-width: 760px) { .nav-links { display: none !important; } }
+    @media (max-width: 480px) { .only-wide { display: none; } .only-narrow { display: inline; } }
+    @media (max-width: 560px) { .speakers { grid-template-columns: 1fr; } }
   </style>
 </helmet>
 
-<div style="min-height:100vh;background:#181830;font-family:var(--font-body);font-size:15px;line-height:1.55">
+<div style="min-height:100vh;background:var(--color-bg);font-family:var(--font-body);font-size:15px;line-height:1.55">
 
-  <header style="position:sticky;top:0;z-index:20;background:rgba(24,24,48,0.86);backdrop-filter:blur(14px);background-image:linear-gradient(to right,transparent,var(--color-divider) 48px,var(--color-divider) calc(100% - 48px),transparent);background-repeat:no-repeat;background-position:bottom;background-size:100% 1px">
-    <div class="nav" style="max-width:1120px;margin:0 auto;padding:12px 24px;gap:22px;flex-wrap:wrap">
-      <a href="#top" class="nav-brand" style="text-decoration:none;font-size:17px;letter-spacing:0.02em;margin-right:auto">LIFT <span style="color:var(--color-accent)">2027</span></a>
-      <a href="#speakers">Speakers</a>
-      <a href="#programme">Programme</a>
-      <a href="#contribute">Contribute</a>
-      <a href="#sponsor">Sponsor</a>
-      <a href="#contact">Contact</a>
-      <a class="btn btn-primary" href="{{ submitUrl }}" target="_blank" rel="noopener">Submit a talk or poster</a>
+  <header style="position:sticky;top:0;z-index:20;background-color:rgba(7,9,62,0.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background-image:linear-gradient(to right,transparent,var(--color-divider) 48px,var(--color-divider) calc(100% - 48px),transparent);background-repeat:no-repeat;background-position:bottom;background-size:100% 1px">
+    <div class="nav" style="max-width:1120px;margin:0 auto;padding:14px 24px;gap:22px">
+      <a href="#top" class="nav-brand" style="display:inline-flex;align-items:center;gap:14px;text-decoration:none;margin-right:auto">
+        <img src="assets/logo-planckian-coral.png" alt="Planckian" style="height:16px;width:auto">
+        <span aria-hidden="true" style="width:1px;height:18px;background:var(--color-divider)"></span>
+        <span style="font-size:15px;font-weight:600;letter-spacing:0.06em">LIFT 2027</span>
+      </a>
+      <nav class="nav-links" style="display:flex;gap:22px;align-items:center">
+        <a href="#about">About</a>
+        <a href="#speakers">Speakers</a>
+        <a href="#programme">Programme</a>
+        <a href="#sponsor">Sponsors</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="btn btn-primary" href="{{ submitUrl }}" target="_blank" rel="noopener"><span class="only-wide">Submit a talk or poster</span><span class="only-narrow">Submit</span></a>
     </div>
   </header>
 
-  <section id="top" style="position:relative;overflow:hidden;background-image:radial-gradient(760px 520px at 88% -18%, #4a3161 0%, rgba(74,49,97,0) 62%)">
-    <div style="max-width:1120px;margin:0 auto;padding:64px 24px 72px;display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;justify-content:space-between">
-      <div style="flex:1 1 440px;min-width:0">
-        <div style="display:flex;flex-wrap:wrap;gap:12px 24px;align-items:baseline;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-accent-400)">
-          <span>Workshop</span>
-          <span style="color:var(--color-neutral-500)">Scuola Normale Superiore · Pisa</span>
+  <section id="top" style="position:relative;overflow:hidden;background-image:radial-gradient(760px 540px at 88% -12%, rgba(73,54,158,0.6) 0%, rgba(73,54,158,0) 70%),radial-gradient(560px 380px at -6% 62%, rgba(234,85,75,0.15) 0%, rgba(234,85,75,0) 70%)">
+    <div class="lattice" aria-hidden="true"></div>
+    <div style="position:relative;max-width:1120px;margin:0 auto;padding:72px 24px 84px;display:flex;flex-wrap:wrap;gap:48px;align-items:center;justify-content:space-between">
+      <div style="flex:1 1 540px;min-width:0">
+        <div class="mono" style="display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase">
+          <span style="display:inline-flex;align-items:center;gap:10px;color:var(--color-accent)"><span aria-hidden="true" style="width:7px;height:7px;border-radius:50%;background:var(--color-accent);box-shadow:0 0 0 4px rgba(234,85,75,0.2)"></span>A Planckian conference</span>
+          <span style="color:var(--color-neutral-400)">Hosted by Scuola Normale Superiore, Pisa</span>
         </div>
-        <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:34px">
-          <h2 style="margin:0;font-size:28px;letter-spacing:0.1em;font-weight:600">22–26 MARCH 2027</h2>
+        <h1 style="margin:34px 0 0;font-size:clamp(46px,7.6vw,94px);line-height:0.98;letter-spacing:-0.035em;font-weight:700;color:var(--color-neutral-100);text-wrap:balance">Leaning Into<br><span style="color:var(--color-accent)">Fault Tolerance</span></h1>
+        <div style="display:flex;flex-wrap:wrap;gap:14px 40px;margin-top:38px">
+          <div>
+            <div class="label">Dates</div>
+            <div style="margin-top:4px;font-size:18px;font-weight:600">22–26 March 2027</div>
+          </div>
+          <div>
+            <div class="label">Venue</div>
+            <div style="margin-top:4px;font-size:18px;font-weight:600">Aula Dini, Palazzo del Castelletto</div>
+          </div>
         </div>
-        <p class="text-muted" style="margin:10px 0 0;font-size:16px">Aula Dini · Palazzo del Castelletto · 56126 Pisa, Italy</p>
-        <h1 style="margin:40px 0 0;font-size:clamp(46px,7.4vw,90px);line-height:0.98;letter-spacing:-0.03em;font-weight:700;color:var(--color-accent-400);text-wrap:balance">Leaning Into</h1>
-        <h1 style="margin:2px 0 0;font-family:'Playfair Display',Georgia,serif;font-size:clamp(46px,7.4vw,90px);line-height:1.02;letter-spacing:-0.01em;font-weight:600;color:#f3f5fe;text-wrap:balance">Fault Tolerance</h1>
-        <p style="margin:30px 0 0;max-width:62ch;font-size:17px;line-height:1.6;color:var(--color-neutral-300);text-wrap:pretty">Quantum computing has reached an inflection point. LIFT 2027 brings together an international group of scientists, spanning academia and industry, to discuss the most pressing challenges and recent advances on the road to fault-tolerant quantum computing.</p>
+        <p style="margin:30px 0 0;max-width:62ch;font-size:17px;line-height:1.6;color:var(--color-neutral-300);text-wrap:pretty">Quantum computing has reached an inflection point. LIFT 2027, a Planckian conference hosted by the Scuola Normale Superiore, brings together an international group of scientists, spanning academia and industry, to discuss the most pressing challenges and recent advances on the road to fault-tolerant quantum computing.</p>
         <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:30px">
-          <a class="btn btn-primary" href="{{ submitUrl }}" target="_blank" rel="noopener" style="padding:9px 16px">Submit a talk or poster</a>
-          <button class="btn btn-secondary" onClick="{{ addToCalendar }}" style="padding:9px 16px">Add to calendar</button>
+          <a class="btn btn-primary" href="{{ submitUrl }}" target="_blank" rel="noopener" style="padding:11px 18px">Submit a talk or poster</a>
+          <button class="btn btn-secondary" onClick="{{ addToCalendar }}" style="padding:11px 18px">Add to calendar</button>
         </div>
       </div>
-      <img class="lighten" src="assets/lift-logo.png" alt="LIFT 2027 — Leaning Into Fault Tolerance, Pisa, Italy" style="flex:0 0 auto;width:min(272px,42vw);height:auto">
+      <div style="flex:0 0 auto;position:relative;width:min(290px,64vw);margin:0 auto">
+        <div aria-hidden="true" style="position:absolute;inset:-16%;border-radius:50%;background:radial-gradient(closest-side,rgba(146,101,230,0.32),rgba(146,101,230,0) 72%)"></div>
+        <img class="lighten emblem" src="assets/lift-logo.png" alt="LIFT 2027 — Leaning Into Fault Tolerance, Pisa, Italy" style="position:relative;width:100%;height:auto">
+      </div>
     </div>
   </section>
 
-  <section id="speakers" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:16px 24px 8px">
-    <h6 style="color:var(--color-neutral-500);margin:0 0 26px">Invited speakers</h6>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(196px,1fr));gap:26px 24px">
-      <div><div style="font-weight:600;font-size:17px">Seth Lloyd</div><div class="text-muted" style="font-size:14px">MIT</div></div>
-      <div><div style="font-weight:600;font-size:17px">Barbara Terhal</div><div class="text-muted" style="font-size:14px">TU Delft</div></div>
-      <div><div style="font-weight:600;font-size:17px">Earl Campbell</div><div class="text-muted" style="font-size:14px">Google Quantum AI</div></div>
-      <div><div style="font-weight:600;font-size:17px">Jens Eisert</div><div class="text-muted" style="font-size:14px">Freie U. Berlin</div></div>
-      <div><div style="font-weight:600;font-size:17px">Martin Plenio</div><div class="text-muted" style="font-size:14px">University of Ulm</div></div>
-      <div><div style="font-weight:600;font-size:17px">Hsin-Yuan Huang</div><div class="text-muted" style="font-size:14px">Oratomic</div></div>
-      <div><div style="font-weight:600;font-size:17px">Joschka Roffe</div><div class="text-muted" style="font-size:14px">University of Edinburgh</div></div>
-      <div><div style="font-weight:600;font-size:17px">David Amaro</div><div class="text-muted" style="font-size:14px">Quantinuum</div></div>
+  <section id="about" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:8px 24px 0">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:var(--color-divider);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm)">
+      <div style="padding:28px 30px 30px;background:linear-gradient(140deg,rgba(234,85,75,0.13),rgba(234,85,75,0) 62%),var(--color-bg)">
+        <div class="label">Organised by</div>
+        <div style="height:60px;display:flex;align-items:center;margin-top:14px">
+          <img src="assets/logo-planckian-coral.png" alt="Planckian" style="height:28px;width:auto">
+        </div>
+        <p style="margin:16px 0 0;max-width:46ch;color:var(--color-neutral-300);text-wrap:pretty">LIFT 2027 is a Planckian conference. Planckian is building the foundational technology for large-scale quantum computers.</p>
+        <a class="ext" href="https://www.planckian.co" target="_blank" rel="noopener" style="display:inline-block;margin-top:14px">planckian.co ↗</a>
+      </div>
+      <div style="padding:28px 30px 30px;background:linear-gradient(140deg,rgba(146,101,230,0.13),rgba(146,101,230,0) 62%),var(--color-bg)">
+        <div class="label">Hosted by</div>
+        <div style="height:60px;display:flex;align-items:center;margin-top:14px">
+          <img class="lighten" src="assets/logo-sns.png" alt="Scuola Normale Superiore" style="height:60px;width:auto">
+        </div>
+        <p style="margin:16px 0 0;max-width:46ch;color:var(--color-neutral-300);text-wrap:pretty">The Scuola Normale Superiore hosts the conference in the Aula Dini of Palazzo del Castelletto, Pisa.</p>
+        <a class="ext" href="https://www.sns.it" target="_blank" rel="noopener" style="display:inline-block;margin-top:14px">sns.it ↗</a>
+      </div>
     </div>
-    <p class="text-muted" style="margin:24px 0 0;font-size:14px">More speakers to be announced.</p>
   </section>
 
-  <section id="programme" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:56px 24px 8px">
-    <h6 style="color:var(--color-neutral-500);margin:0 0 26px">On the programme</h6>
+  <section id="speakers" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:72px 24px 8px">
+    <h6 class="kicker">Invited speakers</h6>
+    <div class="speakers" style="display:grid;gap:26px 24px">
+      <div class="speaker"><div style="font-weight:600;font-size:17px">Seth Lloyd</div><div class="text-muted" style="font-size:14px">MIT</div></div>
+      <div class="speaker"><div style="font-weight:600;font-size:17px">Barbara Terhal</div><div class="text-muted" style="font-size:14px">TU Delft</div></div>
+      <div class="speaker"><div style="font-weight:600;font-size:17px">Earl Campbell</div><div class="text-muted" style="font-size:14px">Google Quantum AI</div></div>
+      <div class="speaker"><div style="font-weight:600;font-size:17px">Jens Eisert</div><div class="text-muted" style="font-size:14px">Freie U. Berlin</div></div>
+      <div class="speaker"><div style="font-weight:600;font-size:17px">Martin Plenio</div><div class="text-muted" style="font-size:14px">University of Ulm</div></div>
+      <div class="speaker"><div style="font-weight:600;font-size:17px">Hsin-Yuan Huang</div><div class="text-muted" style="font-size:14px">Oratomic</div></div>
+      <div class="speaker"><div style="font-weight:600;font-size:17px">Joschka Roffe</div><div class="text-muted" style="font-size:14px">University of Edinburgh</div></div>
+      <div class="speaker"><div style="font-weight:600;font-size:17px">David Amaro</div><div class="text-muted" style="font-size:14px">Quantinuum</div></div>
+      <div class="speaker"><div style="font-weight:600;font-size:17px">Élie Gouzien</div><div class="text-muted" style="font-size:14px">Alice &amp; Bob</div></div>
+    </div>
+    <p class="text-muted" style="margin:26px 0 0;font-size:14px">More speakers to be announced.</p>
+  </section>
+
+  <section id="programme" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:64px 24px 8px">
+    <h6 class="kicker">On the programme</h6>
     <div style="display:flex;flex-wrap:wrap;gap:10px">
-      <span class="tag" style="border:1px solid var(--color-divider);border-radius:999px;padding:8px 15px;font-size:14px;color:var(--color-neutral-200)">QEC codes and decoders</span>
-      <span class="tag" style="border:1px solid var(--color-divider);border-radius:999px;padding:8px 15px;font-size:14px;color:var(--color-neutral-200)">Magic state distillation</span>
-      <span class="tag" style="border:1px solid var(--color-divider);border-radius:999px;padding:8px 15px;font-size:14px;color:var(--color-neutral-200)">Modular qubit architectures</span>
-      <span class="tag" style="border:1px solid var(--color-divider);border-radius:999px;padding:8px 15px;font-size:14px;color:var(--color-neutral-200)">Molecular qubits</span>
-      <span class="tag" style="border:1px solid var(--color-divider);border-radius:999px;padding:8px 15px;font-size:14px;color:var(--color-neutral-200)">Hamiltonian learning</span>
-      <span class="tag" style="border:1px solid var(--color-divider);border-radius:999px;padding:8px 15px;font-size:14px;color:var(--color-neutral-200)">Error mitigation</span>
-      <span class="tag" style="border:1px solid var(--color-divider);border-radius:999px;padding:8px 15px;font-size:14px;color:var(--color-neutral-200)">Fault-tolerant algorithms</span>
-      <span class="tag" style="border:1px solid var(--color-divider);border-radius:999px;padding:8px 15px;font-size:14px;color:var(--color-neutral-200)">Resource estimation</span>
-      <span class="tag" style="border:1px solid var(--color-divider);border-radius:999px;padding:8px 15px;font-size:14px;color:var(--color-neutral-200)">AI in quantum</span>
+      <span class="topic">QEC codes and decoders</span>
+      <span class="topic">Magic state distillation</span>
+      <span class="topic">Modular qubit architectures</span>
+      <span class="topic">Molecular qubits</span>
+      <span class="topic">Hamiltonian learning</span>
+      <span class="topic">Error mitigation</span>
+      <span class="topic">Fault-tolerant algorithms</span>
+      <span class="topic">Resource estimation</span>
+      <span class="topic">AI in quantum</span>
     </div>
   </section>
 
-  <section id="contribute" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:56px 24px 8px">
-    <div style="display:flex;flex-wrap:wrap;gap:32px;align-items:center;justify-content:space-between;padding:26px;border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);background-image:linear-gradient(120deg,rgba(66,58,106,0.5),rgba(35,37,50,0.2))">
+  <section id="contribute" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:64px 24px 8px">
+    <div style="display:flex;flex-wrap:wrap;gap:32px;align-items:center;justify-content:space-between;padding:30px;border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);background-image:linear-gradient(120deg,rgba(73,54,158,0.6),rgba(73,54,158,0.18) 55%,rgba(234,85,75,0.16))">
       <div style="flex:1 1 380px;min-width:0">
-        <h3 style="margin:0;font-family:'Playfair Display',Georgia,serif;font-size:27px;font-weight:600">Contributed talks and poster session</h3>
+        <div class="label" style="color:var(--color-accent-400)">Call for contributions</div>
+        <h3 style="margin:10px 0 0;font-size:26px;font-weight:700;letter-spacing:-0.02em">Contributed talks and poster session</h3>
         <p style="margin:12px 0 0;max-width:58ch;color:var(--color-neutral-300);text-wrap:pretty">Applications for contributed talks and the poster session are submitted through the abstract form. Abstracts can be marked for a talk, a poster, or either.</p>
       </div>
-      <a class="btn btn-primary" href="{{ submitUrl }}" target="_blank" rel="noopener" style="flex:0 0 auto;padding:11px 18px">Open the submission form →</a>
+      <a class="btn btn-primary" href="{{ submitUrl }}" target="_blank" rel="noopener" style="flex:0 0 auto;padding:12px 20px">Open the submission form →</a>
     </div>
   </section>
 
   <sc-if value="{{ showSponsorship }}" hint-placeholder-val="{{ true }}">
-  <section id="sponsor" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:56px 24px 8px">
-    <h6 style="color:var(--color-neutral-500);margin:0 0 26px">Sponsored by</h6>
+  <section id="sponsor" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:64px 24px 8px">
+    <h6 class="kicker">Sponsored by</h6>
     <div style="display:flex;flex-wrap:wrap;gap:24px 48px;align-items:center">
-      <img class="lighten" src="assets/logo-planckian.png" alt="Planckian" style="height:20px;width:auto">
       <img class="lighten" src="assets/logo-quantum-machines.png" alt="Quantum Machines" style="height:30px;width:auto">
       <img class="lighten" src="assets/logo-quantinuum.png" alt="Quantinuum" style="height:44px;width:auto">
       <!-- Placeholders until logos arrive: swap each span for an <img class="lighten"> -->
@@ -113,36 +165,43 @@
       <span class="logo-placeholder">Quantum Elements</span>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;margin-top:30px;font-size:14px">
-      <span class="text-muted" style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase">Interested in sponsoring</span>
+      <span class="label">Interested in sponsoring</span>
       <span>Trinidad Lantano · <a href="mailto:tlantano@planckian.co">tlantano@planckian.co</a></span>
     </div>
   </section>
   </sc-if>
 
-  <footer id="contact" style="scroll-margin-top:72px;margin-top:64px;background-image:linear-gradient(to bottom,rgba(24,24,48,0),rgba(30,30,62,0.8))">
-    <div style="max-width:1120px;margin:0 auto;padding:44px 24px 56px">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px">
+  <footer id="contact" style="scroll-margin-top:72px;margin-top:88px;background-image:linear-gradient(to bottom,rgba(17,26,74,0),rgba(17,26,74,0.85))">
+    <div style="max-width:1120px;margin:0 auto;padding:48px 24px 56px;background-image:linear-gradient(to right,transparent,var(--color-divider) 48px,var(--color-divider) calc(100% - 48px),transparent);background-repeat:no-repeat;background-position:top;background-size:100% 1px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:36px 32px">
         <div>
-          <h6 style="color:var(--color-neutral-500);margin:0 0 12px">Organisers</h6>
+          <h6 class="kicker" style="margin-bottom:16px">Organisers</h6>
           <div style="font-size:14px;line-height:1.75">
             <div><span class="text-muted">Chairs</span> Lindsay Oftelie · Roberto Menta · Trinidad Lantano</div>
             <div><span class="text-muted">Advisory committee</span> Vittorio Giovannetti · Ludovico Lami</div>
           </div>
         </div>
         <div>
-          <h6 style="color:var(--color-neutral-500);margin:0 0 12px">Contact</h6>
+          <h6 class="kicker" style="margin-bottom:16px">Contact</h6>
           <div style="display:flex;flex-direction:column;gap:2px;font-size:14px">
             <a href="mailto:loftelie@planckian.co">loftelie@planckian.co</a>
             <a href="mailto:roberto.menta@sns.it">roberto.menta@sns.it</a>
             <a href="mailto:tlantano@planckian.co">tlantano@planckian.co</a>
           </div>
         </div>
-        <div>
-          <h6 style="color:var(--color-neutral-500);margin:0 0 12px">Hosted &amp; supported by</h6>
-          <div style="display:flex;flex-wrap:wrap;gap:22px;align-items:center">
-            <img class="lighten" src="assets/logo-sns.png" alt="Scuola Normale Superiore" style="height:52px;width:auto">
-            <div style="display:flex;gap:10px;align-items:center">
-              <img src="assets/logo-erc.png" alt="European Research Council" style="height:46px;width:auto">
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div>
+            <div class="label">Organised by</div>
+            <img src="assets/logo-planckian-coral.png" alt="Planckian" style="height:18px;width:auto;margin-top:12px">
+          </div>
+          <div>
+            <div class="label">Hosted by</div>
+            <img class="lighten" src="assets/logo-sns.png" alt="Scuola Normale Superiore" style="height:48px;width:auto;margin-top:10px">
+          </div>
+          <div>
+            <div class="label">Supported by</div>
+            <div style="display:flex;gap:10px;align-items:center;margin-top:10px">
+              <img src="assets/logo-erc.png" alt="European Research Council" style="height:42px;width:auto">
               <div>
                 <div style="font-size:13px;letter-spacing:0.1em;font-weight:600">ETQO</div>
                 <div class="text-muted" style="font-size:12px">ERC Starting Grant No. 101165230</div>
@@ -151,8 +210,8 @@
           </div>
         </div>
       </div>
-      <div style="display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;margin-top:40px;padding-top:20px;border-top:1px solid var(--color-divider);font-size:13px">
-        <span class="text-muted">LIFT 2027 · Leaning Into Fault Tolerance · Pisa, Italy</span>
+      <div style="display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;margin-top:44px;padding-top:20px;border-top:1px solid var(--color-divider);font-size:13px">
+        <span class="text-muted">LIFT 2027 · A Planckian conference hosted by the Scuola Normale Superiore · Pisa, Italy</span>
         <span class="text-muted">22–26 March 2027</span>
       </div>
     </div>
@@ -183,7 +242,7 @@ class Component extends DCLogic {
       'DTSTART;VALUE=DATE:20270322', 'DTEND;VALUE=DATE:20270327',
       'SUMMARY:LIFT 2027 — Leaning Into Fault Tolerance',
       'LOCATION:Aula Dini, Palazzo del Castelletto, 56126 Pisa, Italy',
-      'DESCRIPTION:Workshop at Scuola Normale Superiore, Pisa. ' + eventUrl,
+      'DESCRIPTION:A Planckian conference hosted by the Scuola Normale Superiore, Pisa. ' + eventUrl,
       'URL:' + eventUrl, 'END:VEVENT', 'END:VCALENDAR',
     ].join('\r\n');
     const a = document.createElement('a');

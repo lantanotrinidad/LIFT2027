@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Submit an abstract — LIFT 2027</title>
+<title>Submit an abstract — LIFT 2027 · A Planckian conference</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
@@ -13,28 +13,34 @@
   <script src="ds/_ds_bundle.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap">
   <style>
     html { scroll-behavior: smooth; }
-    body { background: #181830; color: #e9e9ed; margin: 0; }
+    body { background: var(--color-bg); color: var(--color-text); margin: 0; }
     a { color: var(--color-accent); }
-    a:hover { color: var(--color-accent-300); }
+    a:hover { color: var(--color-accent-400); }
     textarea.input { resize: vertical; font-family: var(--font-body); }
+    legend { font-family: var(--font-mono); font-weight: 500; }
+    .only-narrow { display: none; }
+    @media (max-width: 520px) { .only-wide { display: none; } .only-narrow { display: inline; } }
   </style>
 </helmet>
 
-<div style="min-height:100vh;background:#181830;font-family:var(--font-body);font-size:15px;line-height:1.55">
+<div style="min-height:100vh;background:var(--color-bg);background-image:radial-gradient(700px 460px at 92% -8%, rgba(73,54,158,0.5) 0%, rgba(73,54,158,0) 70%);background-repeat:no-repeat;font-family:var(--font-body);font-size:15px;line-height:1.55">
 
   <header style="background-image:linear-gradient(to right,transparent,var(--color-divider) 48px,var(--color-divider) calc(100% - 48px),transparent);background-repeat:no-repeat;background-position:bottom;background-size:100% 1px">
-    <div class="nav" style="max-width:880px;margin:0 auto;padding:12px 24px;gap:22px;flex-wrap:wrap">
-      <a href="index.html" class="nav-brand" style="text-decoration:none;font-size:17px;letter-spacing:0.02em;margin-right:auto">LIFT <span style="color:var(--color-accent)">2027</span></a>
-      <a href="index.html">← Back to the event page</a>
+    <div class="nav" style="max-width:880px;margin:0 auto;padding:14px 24px;gap:22px">
+      <a href="index.html" class="nav-brand" style="display:inline-flex;align-items:center;gap:14px;text-decoration:none;margin-right:auto">
+        <img src="assets/logo-planckian-coral.png" alt="Planckian" style="height:16px;width:auto">
+        <span aria-hidden="true" style="width:1px;height:18px;background:var(--color-divider)"></span>
+        <span style="font-size:15px;font-weight:600;letter-spacing:0.06em">LIFT 2027</span>
+      </a>
+      <a href="index.html">← <span class="only-wide">Back to the event page</span><span class="only-narrow">Event page</span></a>
     </div>
   </header>
 
-  <div style="max-width:880px;margin:0 auto;padding:52px 24px 72px">
-    <div style="font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--color-accent-400)">Contributed talks &amp; poster session</div>
-    <h1 style="margin:18px 0 0;font-family:'Playfair Display',Georgia,serif;font-size:clamp(34px,5.4vw,52px);line-height:1.04;letter-spacing:-0.01em;font-weight:600;color:#f3f5fe">Submit an abstract</h1>
+  <div style="max-width:880px;margin:0 auto;padding:56px 24px 72px">
+    <div style="font-family:var(--font-mono);font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent)">Contributed talks &amp; poster session</div>
+    <h1 style="margin:16px 0 0;font-size:clamp(36px,5.6vw,56px);line-height:1.02;letter-spacing:-0.03em;font-weight:700;color:var(--color-neutral-100)">Submit an abstract</h1>
     <p style="margin:16px 0 0;max-width:62ch;font-size:16px;color:var(--color-neutral-300);text-wrap:pretty">One abstract per submitting author. Mark whether you would like to be considered for a contributed talk, the poster session, or either — the programme committee allocates the slots after the deadline.</p>
     <div style="display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-top:20px;font-size:14px">
       <span class="tag tag-outline" style="border-radius:999px;padding:4px 12px;font-size:12px;letter-spacing:0.02em;flex:0 0 auto;white-space:nowrap">{{ deadline }}</span>
@@ -42,8 +48,8 @@
     </div>
 
     <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
-      <div style="margin-top:36px;padding:28px;border-radius:var(--radius-lg);border:1px solid var(--color-accent-700);background-image:linear-gradient(150deg,rgba(43,39,65,0.9),rgba(38,42,96,0.55))">
-        <h3 style="margin:0;font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:600">Your abstract is ready to send</h3>
+      <div style="margin-top:36px;padding:28px;border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);background-image:linear-gradient(140deg,rgba(73,54,158,0.6),rgba(73,54,158,0.18) 55%,rgba(234,85,75,0.16))">
+        <h3 style="margin:0;font-size:26px;font-weight:700;letter-spacing:-0.02em">Your abstract is ready to send</h3>
         <p style="margin:12px 0 0;max-width:60ch;color:var(--color-neutral-300);text-wrap:pretty">An email draft to the programme committee has opened in your mail client with everything you entered. Send it to complete the submission — you will receive a confirmation by email.</p>
         <p class="text-muted" style="margin:10px 0 0;max-width:60ch;font-size:14px">If no draft opened, copy the submission below and send it to <a href="{{ primaryMailto }}">{{ primaryEmail }}</a>.</p>
         <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:20px">
@@ -149,9 +155,9 @@
     </sc-if>
   </div>
 
-  <footer style="background-image:linear-gradient(to bottom,rgba(24,24,48,0),rgba(30,30,62,0.8))">
+  <footer style="background-image:linear-gradient(to bottom,rgba(17,26,74,0),rgba(17,26,74,0.85))">
     <div style="max-width:880px;margin:0 auto;padding:36px 24px 48px;display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;font-size:13px">
-      <span class="text-muted">LIFT 2027 · Leaning Into Fault Tolerance · Pisa, Italy</span>
+      <span class="text-muted">LIFT 2027 · A Planckian conference hosted by the Scuola Normale Superiore · Pisa, Italy</span>
       <a href="index.html">Event page</a>
     </div>
   </footer>
