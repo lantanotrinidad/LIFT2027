@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Planckian presents LIFT 2027 — Leaning Into Fault Tolerance · Pisa, 22–26 March 2027</title>
+<title>LIFT 2027 — Leaning Into Fault Tolerance · Pisa, 22–26 March 2027 · Organised by Planckian</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Planckian presents LIFT 2027 — Leaning Into Fault Tolerance. Pisa, 22–26 March 2027.">
+<meta name="description" content="LIFT 2027 — Leaning Into Fault Tolerance. 22–26 March 2027, Scuola Normale Superiore, Pisa. Organised by Planckian.">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -40,7 +40,6 @@
     .speaker:hover { transform: translateY(-3px); box-shadow: 0 0 0 1px rgba(234,85,75,0.5), 0 14px 30px rgba(0,0,0,0.35); }
     .speaker-name { font-size: 16px; font-weight: 600; line-height: 1.3; }
     .speaker-aff { margin-top: 2px; font-size: 13.5px; }
-    .about-body { flex: 1 1 520px; min-width: 0; max-width: 68ch; }
     .topic { border: 1px solid var(--color-divider); border-radius: 999px; padding: 9px 16px; font-size: 14px; color: var(--color-neutral-200); background: rgba(255,255,255,0.03); transition: border-color .2s ease, color .2s ease, background-color .2s ease; }
     .topic:hover { border-color: rgba(234,85,75,0.6); background: rgba(234,85,75,0.08); color: var(--color-neutral-100); }
     .ext { font-family: var(--font-mono); font-size: 13px; text-decoration: none; }
@@ -53,7 +52,6 @@
     .float { animation: float 7s ease-in-out infinite; }
     @supports (animation-timeline: view()) { .reveal { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% entry 30%; } }
     @media (prefers-reduced-motion: reduce) { .rise, .float, .reveal, .pulse { animation: none !important; } }
-    @media (min-width: 900px) { .about-body { padding-left: 56px; border-left: 1px solid var(--color-divider); } }
     .only-narrow { display: none; }
     @media (max-width: 760px) { .nav-links { display: none !important; } }
     @media (max-width: 480px) { .only-wide { display: none; } .only-narrow { display: inline; } }
@@ -73,7 +71,6 @@
       </a>
       <nav class="nav-links" style="display:flex;gap:22px;align-items:center">
         <a href="#speakers">Speakers</a>
-        <a href="#about">About</a>
         <a href="#programme">Programme</a>
         <a href="#sponsor">Sponsors</a>
         <a href="#contact">Contact</a>
@@ -87,15 +84,11 @@
     <div style="position:relative;max-width:1120px;margin:0 auto;padding:72px 24px 84px;display:flex;flex-wrap:wrap;gap:48px;align-items:center;justify-content:space-between">
       <!-- container units size the hero lettering to this column; the vw values are the fallback -->
       <div style="flex:1 1 540px;min-width:0;container-type:inline-size">
-        <div class="rise" style="display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center">
-          <img src="assets/logo-planckian-coral.png" alt="Planckian" style="height:clamp(26px,3.6vw,44px);height:clamp(26px,8.5cqi,44px);width:auto">
-          <span style="font-size:clamp(20px,2.8vw,34px);font-size:clamp(20px,6.5cqi,34px);font-weight:500;letter-spacing:-0.01em;color:var(--color-neutral-300)">presents</span>
-        </div>
-        <h1 class="rise d1" style="margin:30px 0 0;font-weight:700;color:var(--color-neutral-100)">
+        <h1 class="rise" style="margin:0;font-weight:700;color:var(--color-neutral-100)">
           <span class="lift-word" style="display:block;font-size:clamp(56px,12vw,132px);font-size:clamp(56px,21cqi,132px);line-height:0.88;letter-spacing:-0.045em">LIFT 2027</span>
           <span style="display:block;margin-top:18px;font-size:clamp(30px,4.2vw,48px);line-height:1.05;letter-spacing:-0.03em;text-wrap:balance">Leaning Into <span style="color:var(--color-accent)">Fault Tolerance</span></span>
         </h1>
-        <div class="meta rise d2">
+        <div class="meta rise d1">
           <div>
             <div class="label">Dates</div>
             <div class="meta-val">22–26 March 2027</div>
@@ -104,6 +97,10 @@
             <div class="label">Venue</div>
             <div class="meta-val">Scuola Normale Superiore, Pisa</div>
           </div>
+        </div>
+        <div class="rise d2" style="display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-top:28px">
+          <span style="font-size:18px;font-size:clamp(15px,5.3cqi,18px);font-weight:500;color:var(--color-neutral-300)">Organised by</span>
+          <img src="assets/logo-planckian-coral.png" alt="Planckian" style="height:26px;height:clamp(20px,7.6cqi,26px);width:auto">
         </div>
         <p class="rise d3" style="margin:30px 0 0;max-width:62ch;font-size:17px;line-height:1.6;color:var(--color-neutral-300);text-wrap:pretty">Quantum computing has reached an inflection point. At LIFT 2027, Planckian brings together an international group of scientists, spanning academia and industry, to discuss the most pressing challenges and recent advances on the road to fault-tolerant quantum computing.</p>
         <div class="rise d4" style="display:flex;flex-wrap:wrap;gap:10px;margin-top:30px">
@@ -136,24 +133,6 @@
       <div class="speaker"><div class="speaker-name">Georgia Nixon</div><div class="text-muted speaker-aff">University of Sydney</div></div>
     </div>
     <p class="text-muted" style="margin:22px 0 0;font-size:14px">More speakers to be announced.</p>
-  </section>
-
-  <section id="about" class="reveal" style="scroll-margin-top:72px;margin-top:40px;padding:56px 0 24px;overflow:hidden;background-image:radial-gradient(520px 340px at 14% 46%, rgba(234,85,75,0.14), rgba(234,85,75,0) 70%)">
-    <div style="max-width:1120px;margin:0 auto;padding:0 24px">
-      <h6 class="kicker">About</h6>
-      <div style="display:flex;flex-wrap:wrap;gap:28px 56px;align-items:flex-start">
-        <div style="flex:0 0 auto;max-width:100%">
-          <img src="assets/logo-planckian-coral.png" alt="Planckian" style="width:384px;max-width:100%;height:auto;margin-top:2px">
-          <div style="margin-top:20px;font-size:20px;font-weight:600;line-height:1.3;letter-spacing:-0.015em;color:var(--color-neutral-200)">Quantum computers,<br>reimagined at scale.</div>
-        </div>
-        <div class="about-body">
-          <p style="margin:0;font-size:19px;line-height:1.55;color:var(--color-neutral-100);text-wrap:pretty">LIFT 2027 is a Planckian conference. Planckian is building the foundational technology for large-scale quantum computers: a quantum processor that combines the established reliability of superconducting circuits with a new approach to qubit control.</p>
-          <p style="margin:18px 0 0;font-size:16px;line-height:1.65;color:var(--color-neutral-300);text-wrap:pretty">Scaling superconducting qubits while preserving performance is one of the hardest problems in quantum computing. Instead of brute-force scaling, with control hardware growing alongside every added qubit, Planckian decouples control from qubit count. Its chip architecture uses shared control lines, which drastically reduces wiring complexity. All qubits are addressed simultaneously by globally broadcast signals, and engineered qubit couplings turn those signals into selective gate operations and move quantum information within the chip.</p>
-          <p style="margin:18px 0 0;font-size:16px;line-height:1.65;color:var(--color-neutral-300);text-wrap:pretty">The technology is developed by a team that has spent decades at the forefront of quantum research.</p>
-          <a class="ext" href="https://www.planckian.co" target="_blank" rel="noopener" style="display:inline-block;margin-top:22px">planckian.co ↗</a>
-        </div>
-      </div>
-    </div>
   </section>
 
   <section id="programme" class="reveal" style="scroll-margin-top:72px;max-width:1120px;margin:0 auto;padding:56px 24px 8px">
@@ -199,7 +178,7 @@
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;margin-top:30px;font-size:14px">
       <span class="label">Interested in sponsoring</span>
-      <span>Trinidad Lantano · <a href="mailto:tlantano@planckian.co">tlantano@planckian.co</a></span>
+      <a href="mailto:lift2027@planckian.co">lift2027@planckian.co</a>
     </div>
   </section>
   </sc-if>
@@ -225,15 +204,13 @@
         </div>
         <div>
           <h6 class="kicker" style="margin-bottom:16px">Contact</h6>
-          <div style="display:flex;flex-direction:column;gap:2px;font-size:14px">
-            <a href="mailto:loftelie@planckian.co">loftelie@planckian.co</a>
-            <a href="mailto:roberto.menta@sns.it">roberto.menta@sns.it</a>
-            <a href="mailto:tlantano@planckian.co">tlantano@planckian.co</a>
+          <div style="font-size:14px">
+            <a href="mailto:lift2027@planckian.co">lift2027@planckian.co</a>
           </div>
         </div>
         <div style="display:flex;flex-direction:column;gap:20px">
           <div>
-            <div class="label">Presented by</div>
+            <div class="label">Organised by</div>
             <img src="assets/logo-planckian-coral.png" alt="Planckian" style="height:26px;width:auto;margin-top:12px">
           </div>
           <div>
@@ -249,7 +226,7 @@
         </div>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;margin-top:44px;padding-top:20px;border-top:1px solid var(--color-divider);font-size:13px">
-        <span class="text-muted">Planckian presents LIFT 2027 · Pisa, Italy</span>
+        <span class="text-muted">LIFT 2027 — Leaning Into Fault Tolerance · Organised by Planckian · Pisa, Italy</span>
         <span class="text-muted">22–26 March 2027</span>
       </div>
     </div>
@@ -257,10 +234,10 @@
 </div>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;submitUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;submit.html&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Event&quot;},&quot;eventUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://indico.sns.it/event/152&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Event&quot;},&quot;showCountdown&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Event&quot;},&quot;showSponsorship&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;submitUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;submit.html&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Event&quot;},&quot;eventUrl&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;https://liftconference.org&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Event&quot;},&quot;showCountdown&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Event&quot;},&quot;showSponsorship&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;}}">
 class Component extends DCLogic {
   renderVals() {
-    const eventUrl = this.props.eventUrl ?? 'https://indico.sns.it/event/152';
+    const eventUrl = this.props.eventUrl ?? 'https://liftconference.org';
     const start = new Date(2027, 2, 22);
     const days = Math.ceil((start - new Date()) / 86400000);
     return {
@@ -275,12 +252,12 @@ class Component extends DCLogic {
   downloadIcs(eventUrl) {
     const ics = [
       'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//LIFT 2027//EN', 'BEGIN:VEVENT',
-      'UID:lift2027@indico.sns.it',
+      'UID:lift2027@liftconference.org',
       'DTSTAMP:' + new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z',
       'DTSTART;VALUE=DATE:20270322', 'DTEND;VALUE=DATE:20270327',
       'SUMMARY:LIFT 2027 — Leaning Into Fault Tolerance',
       'LOCATION:Aula Dini, Palazzo del Castelletto, 56126 Pisa, Italy',
-      'DESCRIPTION:Planckian presents LIFT 2027 — Leaning Into Fault Tolerance. ' + eventUrl,
+      'DESCRIPTION:LIFT 2027 — Leaning Into Fault Tolerance. Organised by Planckian. ' + eventUrl,
       'URL:' + eventUrl, 'END:VEVENT', 'END:VCALENDAR',
     ].join('\r\n');
     const a = document.createElement('a');

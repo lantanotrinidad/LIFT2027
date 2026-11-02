@@ -1,6 +1,6 @@
 # LIFT 2027
 
-Event site for **LIFT 2027 — Leaning Into Fault Tolerance**, presented by Planckian. 22–26 March 2027, Aula Dini, Palazzo del Castelletto (Scuola Normale Superiore), Pisa.
+Event site for **LIFT 2027 — Leaning Into Fault Tolerance**, organised by Planckian. 22–26 March 2027, Aula Dini, Palazzo del Castelletto (Scuola Normale Superiore), Pisa.
 
 ## Files
 
@@ -18,4 +18,4 @@ Settings → Pages → Deploy from a branch → `main` / root. The pages are sta
 
 Both pages are single files: markup at the top, a `Component` class at the bottom holding form validation and the calendar download. Colors, type and spacing come from `ds/styles.css` variables — change tokens there rather than hard-coding values.
 
-Submission emails currently go to loftelie@planckian.co, cc roberto.menta@sns.it and tlantano@planckian.co.
+The only public contact is lift2027@planckian.co, a Google group all three chairs can reply from. Submission emails go there too. The "Add to calendar" file links to https://liftconference.org.
