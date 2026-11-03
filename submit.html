@@ -20,6 +20,8 @@
     a:hover { color: var(--color-accent-400); }
     textarea.input { resize: vertical; font-family: var(--font-body); }
     legend { font-family: var(--font-mono); font-weight: 500; }
+    .check { display: flex; gap: 10px; align-items: flex-start; max-width: 64ch; font-size: 14px; color: var(--color-neutral-300); cursor: pointer; }
+    .check input { margin-top: 3px; accent-color: var(--color-accent); }
     .only-narrow { display: none; }
     @media (max-width: 520px) { .only-wide { display: none; } .only-narrow { display: inline; } }
   </style>
@@ -140,11 +142,35 @@
           <label class="seg-opt"><input type="radio" name="format" value="Poster" checked="{{ formatPoster }}" onChange="{{ onChange }}">Poster</label>
           <label class="seg-opt"><input type="radio" name="format" value="Either" checked="{{ formatEither }}" onChange="{{ onChange }}">Either</label>
         </div>
-        <label style="display:flex;gap:10px;align-items:flex-start;max-width:64ch;font-size:14px;color:var(--color-neutral-300);cursor:pointer">
-          <input type="checkbox" name="consent" checked="{{ f.consent }}" onChange="{{ onChange }}" style="margin-top:3px;accent-color:var(--color-accent)">
-          <span>I agree to my abstract being published in the LIFT 2027 book of abstracts and to being contacted by the organisers about this submission.</span>
+      </fieldset>
+
+      <fieldset style="border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:14px">
+        <legend style="padding:0;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-neutral-500)">Privacy</legend>
+        <div class="text-muted" style="max-width:64ch;font-size:14px;text-wrap:pretty">
+          <p style="margin:0">LIFT 2027 is organised by Planckian srl, Lungarno Galileo Galilei 13, 56125 Pisa (PI), Italy, which is responsible for the personal data you give on this form: your name, email, affiliation, position, and the details of your contribution, including co-author names.</p>
+          <p style="margin:10px 0 0">We use it to review your abstract, put together the programme, publish accepted abstracts, and contact you about your submission and the conference — and, only if you tick the last box below, about future LIFT conferences and Planckian events. Only the LIFT 2027 chairs and programme committee see it. It is stored in Google Workspace, which processes it on our behalf.</p>
+          <p style="margin:10px 0 0">We delete submissions 12 months after the conference, except abstracts published in the book of abstracts.</p>
+          <p style="margin:10px 0 0">You can ask to see, correct or delete your data, or withdraw your consent, at any time by writing to <a href="{{ primaryMailto }}">{{ primaryEmail }}</a>. You can also complain to the Italian data protection authority (Garante per la protezione dei dati personali).</p>
+        </div>
+        <label class="check">
+          <input type="checkbox" name="consentPrivacy" checked="{{ f.consentPrivacy }}" onChange="{{ onChange }}">
+          <span>I have read the privacy notice and understand how my data will be used to handle this submission.</span>
         </label>
-        <sc-if value="{{ errors.consent }}" hint-placeholder-val="{{ false }}"><div style="font-size:13px;color:var(--color-accent-300)">{{ errors.consent }}</div></sc-if>
+        <sc-if value="{{ errors.consentPrivacy }}" hint-placeholder-val="{{ false }}"><div style="font-size:13px;color:var(--color-accent-300)">{{ errors.consentPrivacy }}</div></sc-if>
+        <label class="check">
+          <input type="checkbox" name="consentPublish" checked="{{ f.consentPublish }}" onChange="{{ onChange }}">
+          <span>If my contribution is accepted, I agree to its title, abstract, authors and affiliations being published in the LIFT 2027 book of abstracts and on the conference website.</span>
+        </label>
+        <sc-if value="{{ errors.consentPublish }}" hint-placeholder-val="{{ false }}"><div style="font-size:13px;color:var(--color-accent-300)">{{ errors.consentPublish }}</div></sc-if>
+        <label class="check">
+          <input type="checkbox" name="consentAuthors" checked="{{ f.consentAuthors }}" onChange="{{ onChange }}">
+          <span>Any co-authors have agreed to this submission and to being listed as authors.</span>
+        </label>
+        <sc-if value="{{ errors.consentAuthors }}" hint-placeholder-val="{{ false }}"><div style="font-size:13px;color:var(--color-accent-300)">{{ errors.consentAuthors }}</div></sc-if>
+        <label class="check">
+          <input type="checkbox" name="updates" checked="{{ f.updates }}" onChange="{{ onChange }}">
+          <span>Keep me informed about future LIFT conferences and Planckian events. <span class="text-muted">— optional</span></span>
+        </label>
       </fieldset>
 
       <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding-top:22px;background-image:linear-gradient(to right,transparent,var(--color-divider) 0,var(--color-divider) calc(100% - 48px),transparent);background-repeat:no-repeat;background-position:top;background-size:100% 1px">
@@ -170,7 +196,7 @@ class Component extends DCLogic {
     submitted: false,
     errors: {},
     copyLabel: 'Copy submission as text',
-    f: { name: '', email: '', affiliation: '', stage: 'PhD student', title: '', authors: '', abstract: '', link: '', topic: 'QEC codes and decoders', format: 'Either', consent: false },
+    f: { name: '', email: '', affiliation: '', stage: 'PhD student', title: '', authors: '', abstract: '', link: '', topic: 'QEC codes and decoders', format: 'Either', consentPrivacy: false, consentPublish: false, consentAuthors: false, updates: false },
   };
 
   get maxWords() { return this.props.maxWords ?? 250; }
@@ -186,7 +212,9 @@ class Component extends DCLogic {
     const w = this.words(f.abstract);
     if (w < 20) e.abstract = 'Please write at least 20 words.';
     else if (w > this.maxWords) e.abstract = 'Over the ' + this.maxWords + '-word limit.';
-    if (!f.consent) e.consent = 'Please confirm before submitting.';
+    if (!f.consentPrivacy) e.consentPrivacy = 'Please confirm before submitting.';
+    if (!f.consentPublish) e.consentPublish = 'Please confirm before submitting.';
+    if (!f.consentAuthors) e.consentAuthors = 'Please confirm before submitting.';
     return e;
   }
 
@@ -203,7 +231,10 @@ class Component extends DCLogic {
       'Preferred format: ' + f.format,
       'Preprint / DOI: ' + (f.link || '—'), '',
       'Abstract:', f.abstract, '',
-      'Consent to publication in the book of abstracts: yes',
+      'Privacy notice read: yes',
+      'Consent to publication if accepted: yes',
+      'Co-authors have agreed: yes',
+      'Future LIFT and Planckian updates: ' + (f.updates ? 'yes' : 'no'),
     ].join('\n');
   }
 
