@@ -51,12 +51,12 @@
 
     <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
       <div style="margin-top:36px;padding:28px;border-radius:var(--radius-lg);box-shadow:var(--shadow-sm);background-image:linear-gradient(140deg,rgba(73,54,158,0.6),rgba(73,54,158,0.18) 55%,rgba(234,85,75,0.16))">
-        <h3 style="margin:0;font-size:26px;font-weight:700;letter-spacing:-0.02em">Your abstract is ready to send</h3>
-        <p style="margin:12px 0 0;max-width:60ch;color:var(--color-neutral-300);text-wrap:pretty">An email draft to the programme committee has opened in your mail client with everything you entered. Send it to complete the submission — you will receive a confirmation by email.</p>
-        <p class="text-muted" style="margin:10px 0 0;max-width:60ch;font-size:14px">If no draft opened, copy the submission below and send it to <a href="{{ primaryMailto }}">{{ primaryEmail }}</a>.</p>
+        <h3 style="margin:0;font-size:26px;font-weight:700;letter-spacing:-0.02em">Thank you — we have received your abstract</h3>
+        <p style="margin:12px 0 0;max-width:60ch;color:var(--color-neutral-300);text-wrap:pretty">A copy of your answers is on its way to <strong style="color:var(--color-neutral-100);font-weight:600">{{ f.email }}</strong>. The programme committee allocates talks and posters after the deadline.</p>
+        <p class="text-muted" style="margin:10px 0 0;max-width:60ch;font-size:14px">If the copy hasn't arrived within a few minutes and isn't in your spam folder, copy your submission below and send it to <a href="{{ primaryMailto }}">{{ primaryEmail }}</a>.</p>
         <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:20px">
           <button class="btn btn-primary" onClick="{{ copySubmission }}" style="padding:9px 16px">{{ copyLabel }}</button>
-          <button class="btn btn-ghost" onClick="{{ editAgain }}" style="padding:9px 16px">Back to the form</button>
+          <a class="btn btn-ghost" href="index.html" style="padding:9px 16px;text-decoration:none">Back to the event page</a>
         </div>
       </div>
     </sc-if>
@@ -67,6 +67,15 @@
       <fieldset style="border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:18px">
         <legend style="padding:0;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--color-neutral-500)">Submitting author</legend>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px 20px">
+          <div class="field">
+            <label for="s-salutation">Salutation <span class="text-muted">— optional</span></label>
+            <select class="input" id="s-salutation" name="salutation" value="{{ f.salutation }}" onChange="{{ onChange }}">
+              <option value="">—</option>
+              <option value="Prof.">Prof.</option>
+              <option value="Dr.">Dr.</option>
+              <option value="Mr./Mrs">Mr./Mrs.</option>
+            </select>
+          </div>
           <div class="field">
             <label for="s-name">Full name</label>
             <input class="input" id="s-name" name="name" value="{{ f.name }}" onChange="{{ onChange }}" placeholder="Ada Lovelace" autocomplete="name">
@@ -175,9 +184,12 @@
       </fieldset>
 
       <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding-top:22px;background-image:linear-gradient(to right,transparent,var(--color-divider) 0,var(--color-divider) calc(100% - 48px),transparent);background-repeat:no-repeat;background-position:top;background-size:100% 1px">
-        <button class="btn btn-primary" type="submit" style="padding:11px 20px">Submit abstract</button>
+        <button class="btn btn-primary" type="submit" disabled="{{ sending }}" style="padding:11px 20px">{{ submitLabel }}</button>
         <span class="text-muted" style="font-size:13px">Questions about a submission: <a href="{{ primaryMailto }}">{{ primaryEmail }}</a></span>
       </div>
+      <sc-if value="{{ submitError }}" hint-placeholder-val="{{ false }}">
+        <div role="alert" style="margin-top:-24px;max-width:64ch;font-size:14px;color:var(--color-accent-300)">Your abstract could not be sent. Check your connection and try again, or <a href="{{ mailto }}">email it to {{ primaryEmail }}</a> instead.</div>
+      </sc-if>
     </form>
     </sc-if>
   </div>
@@ -192,15 +204,63 @@
 
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;deadline&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Submission deadline: 11 December 2026&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Submission&quot;},&quot;maxWords&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:250,&quot;min&quot;:100,&quot;max&quot;:600,&quot;step&quot;:50,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Submission&quot;},&quot;primaryEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;lift2027@planckian.co&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Submission&quot;}}">
+// Submissions are posted to the Google Form "LIFT 2027 — Abstract submission"
+// (https://forms.gle/rfepSJK2VmcPwuMR9). Google only records a response when every
+// value matches the form: dropdown and radio values must equal the option text there
+// exactly, and the checkboxes must send the full option text below. If a question or
+// option is added, removed or reworded on the form, update this file to match.
+const FORM_ACTION = 'https://docs.google.com/forms/d/e/1FAIpQLSfuhxZnJWalrNKiUbWzfAZEcs1EQpHoKOnLJ6VWQwpSq0VAuA/formResponse';
+const ENTRY = {
+  salutation: 'entry.1131222471',
+  name: 'entry.355600973',
+  affiliation: 'entry.295677520',
+  stage: 'entry.1821453803',
+  title: 'entry.936482355',
+  authors: 'entry.644750940',
+  abstract: 'entry.1713401419',
+  link: 'entry.141156851',
+  topic: 'entry.981512268',
+  format: 'entry.1501808261',
+  consentPrivacy: 'entry.1628210100',
+  consentPublish: 'entry.1536041813',
+  consentAuthors: 'entry.1264343279',
+  updates: 'entry.230288974',
+};
+const CHECKBOX_TEXT = {
+  consentPrivacy: 'I have read the privacy notice and understand how my data will be used to handle this submission.',
+  consentPublish: 'If my contribution is accepted, I agree to its title, abstract, authors and affiliations being published in the LIFT 2027 book of abstracts and on the conference website.',
+  consentAuthors: 'Any co-authors have agreed to this submission and to being listed as authors.',
+  updates: 'Keep me informed about future LIFT conferences and Planckian events.',
+};
+
 class Component extends DCLogic {
   state = {
     submitted: false,
+    sending: false,
+    submitError: false,
     errors: {},
     copyLabel: 'Copy submission as text',
-    f: { name: '', email: '', affiliation: '', stage: 'PhD student', title: '', authors: '', abstract: '', link: '', topic: 'QEC codes and decoders', format: 'Either', consentPrivacy: false, consentPublish: false, consentAuthors: false, updates: false },
+    f: { salutation: '', name: '', email: '', affiliation: '', stage: 'PhD student', title: '', authors: '', abstract: '', link: '', topic: 'QEC codes and decoders', format: 'Either', consentPrivacy: false, consentPublish: false, consentAuthors: false, updates: false },
   };
 
+  // The Google Form's abstract question only accepts 20–250 words, so raising this
+  // above 250 also needs the form's response validation changed, or longer abstracts are lost.
   get maxWords() { return this.props.maxWords ?? 250; }
+
+  formData(f) {
+    const d = new URLSearchParams();
+    d.append('emailAddress', f.email.trim());
+    for (const k of ['salutation', 'name', 'affiliation', 'stage', 'title', 'authors', 'abstract', 'link', 'topic', 'format']) {
+      // Non-breaking and other Unicode spaces (common in text pasted from PDFs) count as
+      // word breaks in words() but may not in the form's word-count check, so send plain spaces.
+      const v = f[k].replace(/[^\S\n]/g, ' ').trim();
+      if (v) d.append(ENTRY[k], v);
+    }
+    for (const k of Object.keys(CHECKBOX_TEXT)) {
+      if (f[k]) d.append(ENTRY[k], CHECKBOX_TEXT[k]);
+    }
+    return d;
+  }
 
   words(t) { return t.trim() ? t.trim().split(/\s+/).length : 0; }
 
@@ -222,7 +282,7 @@ class Component extends DCLogic {
   plainText(f) {
     return [
       'LIFT 2027 — abstract submission', '',
-      'Name: ' + f.name,
+      'Name: ' + (f.salutation ? f.salutation + ' ' : '') + f.name,
       'Email: ' + f.email,
       'Affiliation: ' + f.affiliation,
       'Position: ' + f.stage, '',
@@ -253,6 +313,10 @@ class Component extends DCLogic {
       errors: this.state.errors,
       submitted: this.state.submitted,
       editing: !this.state.submitted,
+      sending: this.state.sending,
+      submitLabel: this.state.sending ? 'Submitting…' : 'Submit abstract',
+      submitError: this.state.submitError,
+      mailto,
       copyLabel: this.state.copyLabel,
       deadline: this.props.deadline ?? 'Submission deadline: 11 December 2026',
       primaryEmail,
@@ -274,15 +338,26 @@ class Component extends DCLogic {
       },
       onSubmit: (ev) => {
         ev.preventDefault();
+        if (this.state.sending) return;
         const errors = this.validate(f);
         if (Object.keys(errors).length) {
-          this.setState({ errors });
+          this.setState({ errors, submitError: false });
           const first = document.querySelector('[name="' + Object.keys(errors)[0] + '"]');
           if (first) first.focus();
           return;
         }
-        this.setState({ errors: {}, submitted: true, copyLabel: 'Copy submission as text' });
-        window.location.href = mailto;
+        this.setState({ errors: {}, sending: true, submitError: false });
+        // Google Forms sends no CORS headers, so the response can't be read: a resolved
+        // fetch means the request reached Google, and a rejection means it never left
+        // (offline, or blocked by an extension). The checks in validate() mirror the
+        // form's required questions so that Google doesn't turn the response down.
+        fetch(FORM_ACTION, { method: 'POST', mode: 'no-cors', body: this.formData(f) }).then(
+          () => {
+            this.setState({ sending: false, submitted: true, copyLabel: 'Copy submission as text' });
+            window.scrollTo(0, 0);
+          },
+          () => this.setState({ sending: false, submitError: true }),
+        );
       },
       copySubmission: () => {
         const done = () => {
@@ -292,7 +367,6 @@ class Component extends DCLogic {
         if (navigator.clipboard) navigator.clipboard.writeText(body).then(done, done);
         else done();
       },
-      editAgain: () => this.setState({ submitted: false }),
     };
   }
 }
