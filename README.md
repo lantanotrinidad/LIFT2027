@@ -14,6 +14,8 @@ Event site for **LIFT 2027 — Leaning Into Fault Tolerance**, organised by Plan
 
 Settings → Pages → Deploy from a branch → `main` / root. The pages are static and use relative paths, so they also work from a subdirectory.
 
+The site is served at https://liftconference.org (the `CNAME` file). The domain is registered at Namecheap. Its DNS (Advanced DNS) has four `A` records on `@` pointing to `185.199.108.153`, `185.199.109.153`, `185.199.110.153` and `185.199.111.153`, plus a `CNAME` record from `www` to `lantanotrinidad.github.io`.
+
 ## Editing
 
 Both pages are single files: markup at the top, a `Component` class at the bottom holding form validation and the calendar download. Colors, type and spacing come from `ds/styles.css` variables — change tokens there rather than hard-coding values.
